@@ -70,8 +70,10 @@ class BookContainer extends React.Component{
 		return(
 			<main>
 				<Header findBooksWithKeyword={this.findBooksWithKeyword}/>
-					<FeaturedBooks books={this.state.books}/>
-					<SearchBooks books={this.state.keywordbooks} keyword={this.state.keyword} />
+				<br/><br/><br/>
+				{this.state.keyword ? null : <FeaturedBooks books={this.state.books}/>}
+				{this.state.keyword? <SearchBooks books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
+				
 			</main>
 		)
 	}
