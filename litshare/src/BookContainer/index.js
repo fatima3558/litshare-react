@@ -1,14 +1,13 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { } from 'semantic-ui-react'
+import FeaturedBooks from '../FeaturedBooks'
 
 
 class BookContainer extends React.Component{
 	constructor(){
 		super()
 		this.state={
-			username:'guest',
-			isLoggedIn: false,
 			keyWord:'',
 			books:[]
 		}
@@ -16,11 +15,6 @@ class BookContainer extends React.Component{
 
 	componentDidMount(){
 		this.findAllBooks()
-	}
-
-	findFeaturedBooks(){
-		//find three random books
-
 	}
 
 	findAllBooks= async () =>{
@@ -48,6 +42,7 @@ class BookContainer extends React.Component{
 		return(
 			<div>
 				<h1>Books</h1>
+				<FeaturedBooks books={this.state.books}/> 
 			</div>
 		)
 	}
