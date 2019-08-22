@@ -28,9 +28,12 @@ function FeaturedBooks (props){
 	// if book array has less than 3 books, display all of them 
 
 	return(
-		<Grid>
-			{find3Books}
-		</Grid>
+		<div>
+			<h4>featured books</h4>
+			<Grid>
+				{find3Books}
+			</Grid>
+		</div>
 	)
 }
 

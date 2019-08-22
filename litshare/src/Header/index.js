@@ -14,10 +14,9 @@ class Header extends React.Component{
 	handleSubmit=(e) =>{
 		e.preventDefault()
 		// need to query the data base with the key word
-	}
-
-	findKeywordBook=() => {
-
+		//have a function that is being passed down from the parent, where the argument is this.state.keyword
+		// console.log(this.props,'<-----props in the header');
+		this.props.findBooksWithKeyword(this.state.keyword)
 	}
 
 	handleChange=(e) => {
