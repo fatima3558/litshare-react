@@ -6,14 +6,7 @@ class LoginRegisterContainer extends Component {
 	constructor() {
 		super()
 		this.state = {
-			registered: true,
 		}
-	}
-
-	toggleRegistered = (e) => {
-		this.setState({
-			registered: !this.state.registered
-		})
 	}
 
 	render() {
@@ -23,13 +16,15 @@ class LoginRegisterContainer extends Component {
 				<h4>Share the Lit, Share the Love &hearts;</h4>
 				}
 				<br/>
-				{this.state.registered ? 
+				{this.props.registered ? 
 					<LoginContainer 
 						loggedIn={this.props.loggedIn}
 						toggleLogin={this.props.toggleLogin}
+						registered={this.props.registered}
 					/> : 
 					<RegisterContainer 
 						toggleLogin={this.props.toggleLogin}
+						registered={this.props.registered}
 					/>
 				}
 			</div>

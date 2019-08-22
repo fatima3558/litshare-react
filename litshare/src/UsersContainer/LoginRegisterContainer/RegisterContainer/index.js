@@ -18,17 +18,45 @@ class RegisterContainer extends Component {
 		})
 	}
 
-	handleSubmit = (e) => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
-		const loginInfo = this.state
-		this.setState({
-			username: '',
-			email: '',
-			password: '',
-			bio: '',
-			zipcode: ''
-		})
-		this.props.toggleLogin(loginInfo.username)
+		try {
+			// turn state into FormData()
+			const newUser = new FormData();
+			newUser.append('username', this.state.username)
+			newUser.append('email', this.state.email)
+			newUser.append('password', this.state.password)
+			newUser.append('bio', this.state.bio)
+			newUser.append('zipcode', this.state.zipcode)
+			// query the database
+			const register = await fetch('http://localhost:8000/users/register', {
+				method: 'POST',
+				credentials: 'include',
+				body: newUser,
+				headers: {
+					'enctype': 'multipart/form-data'
+				}
+			})
+
+			const registerResponse = await register.json()
+
+			console.log(registerResponse);
+			// save response in variable called registerResponse
+			
+			// reset state
+			this.setState({
+				username: '',
+				email: '',
+				password: '',
+				bio: '',
+				zipcode: ''
+			})
+			// call on props function to toggleLogin
+			this.props.toggleLogin('fatima')
+			
+		} catch(err) {
+			
+		}
 	}
 
 	render() {

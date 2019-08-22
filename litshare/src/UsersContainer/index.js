@@ -5,14 +5,20 @@ class UsersContainer extends Component {
 	constructor() {
 		super()
 		this.state = {
+			registered: true,
 
 		}
 	}
-	
+
 	handleClick = (e) => {
 		this.props.toggleLogin()
 	}
 
+	toggleRegistered = (e) => {
+		this.setState({
+			registered: !this.state.registered
+		})
+	}
 
 	render() {
 		return(
@@ -26,6 +32,7 @@ class UsersContainer extends Component {
 						</button>
 						<LoginRegisterContainer 
 							loggedIn={this.props.loggedIn}
+							registered={this.state.registered}
 							toggleLogin={this.props.toggleLogin}
 						/>
 					</div>
