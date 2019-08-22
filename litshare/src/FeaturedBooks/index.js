@@ -15,9 +15,9 @@ function FeaturedBooks (props){
 		bookArr = [props.books[randomNum(booksLength)],props.books[randomNum(booksLength)],props.books[randomNum(booksLength)]]
 	}
 
-	const find3Books = bookArr.map(book => {
+	const find3Books = bookArr.map((book,i) => {
 		return (
-			<Grid.Column width={5} key={book.id}>
+			<Grid.Column width={5} key={i}>
 				<Image size='medium' src={book.URL} />
 				<h4>{book.title}</h4>
 			</Grid.Column> 
@@ -29,7 +29,7 @@ function FeaturedBooks (props){
 
 	return(
 		<div>
-			<h4>featured books</h4>
+			<h2>featured books</h2>
 			<Grid>
 				{find3Books}
 			</Grid>

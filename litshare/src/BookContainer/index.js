@@ -1,16 +1,17 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom' 
-
 import { } from 'semantic-ui-react'
 import FeaturedBooks from '../FeaturedBooks'
 import Header from '../Header'
-
+import SearchBooks from '../SearchBooks'
 
 class BookContainer extends React.Component{
 	constructor(){
 		super()
 		this.state={
-			books:[]
+			books:[],
+			keywordbooks:[],
+			keyword:''
 		}
 	}
 
@@ -40,29 +41,38 @@ class BookContainer extends React.Component{
 	}
 
 	findBooksWithKeyword= async (keyword) => {
-    try{
-    	console.log(keyword);
-      const findBooksWithKeywordResponse = await fetch(`http://localhost:8000/books/results?keyword=${keyword}/`,{
-        method: 'GET',
-        credentials: 'include'
-      })
-      // console.log(findBooksWithKeywordResponse);
-      const prasedResponse = await findBooksWithKeywordResponse.json()
-      
-    }catch(err){
-      console.log(err)
-      return err 
-    }
-  }
+    	try{
+    		const url = `http://localhost:8000/books/results?keyword=${keyword}`
+    		console.log("searching url:");
+    		console.log(url);	
+      		const findBooksWithKeywordResponse = await fetch(url, { 
+        		method: 'GET',
+        		credentials: 'include'
+      		})
+	    	// console.log(keyword);
+	      	// console.log(findBooksWithKeywordResponse);
+	      	const prasedResponse = await findBooksWithKeywordResponse.json()
+	      	console.log(prasedResponse,"<-------searchbooks parsedResponse");
+	      	this.setState({
+	      		keywordbooks:[...prasedResponse.data],
+	      		keyword: keyword
+	      	})
+
+    	}catch(err){
+     		console.log(err)
+      		return err 
+    	}
+  	}
 
 
 	render(){
 		console.log(this.state,"<-----state in the boookcontainer");
 		return(
-			<div>
+			<main>
 				<Header findBooksWithKeyword={this.findBooksWithKeyword}/>
-				<FeaturedBooks books={this.state.books}/> 
-			</div>
+					<FeaturedBooks books={this.state.books}/>
+					<SearchBooks books={this.state.keywordbooks} keyword={this.state.keyword} />
+			</main>
 		)
 	}
 }
