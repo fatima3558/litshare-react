@@ -34,6 +34,8 @@ class LoginContainer extends Component {
 					onChange={this.handleChange}
 				>
 				</input>
+				<br/>
+				<button>Log In</button>
 			</form>
 		)
 	}
