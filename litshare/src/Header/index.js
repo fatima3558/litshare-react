@@ -13,6 +13,10 @@ class Header extends React.Component{
 
 	handleSubmit=(e) =>{
 		e.preventDefault()
+		// need to query the data base with the key word
+	}
+
+	findKeywordBook=() => {
 
 	}
 
