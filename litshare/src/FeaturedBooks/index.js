@@ -17,7 +17,7 @@ function FeaturedBooks (props){
 
 	const find3Books = bookArr.map((book,i) => {
 		return (
-			<Grid.Column width={5} key={i}>
+			<Grid.Column width={5} key={i} align='middle'>
 				<Image size='small' src={book.URL} />
 				<h4>{book.title}</h4>
 			</Grid.Column> 
@@ -30,6 +30,7 @@ function FeaturedBooks (props){
 	return(
 		<div>
 			<h2>featured books</h2>
+			<br/><br/>
 			<Grid>
 				{find3Books}
 			</Grid>

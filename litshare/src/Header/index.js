@@ -36,9 +36,9 @@ class Header extends React.Component{
 						</Form>
 					</Grid.Column>
 					<Grid.Column width={8}>
-						<h1> LITSHARE </h1>
+						<h1 align='middle'> LITSHARE </h1>
 					</Grid.Column>
-					<Grid.Column width={4}>
+					<Grid.Column width={4} align='right'>
 						<a href='/users/register'>register</a><br/>
  						<a href='/users/login'>login</a><br/>
 						<a>username</a><br/>
