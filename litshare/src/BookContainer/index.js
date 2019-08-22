@@ -4,6 +4,8 @@ import { } from 'semantic-ui-react'
 import FeaturedBooks from '../FeaturedBooks'
 import Header from '../Header'
 import SearchBooks from '../SearchBooks'
+import Footer from '../Footer'
+
 
 class BookContainer extends React.Component{
 	constructor(){
@@ -73,7 +75,7 @@ class BookContainer extends React.Component{
 				<br/><br/><br/>
 				{this.state.keyword ? null : <FeaturedBooks books={this.state.books}/>}
 				{this.state.keyword? <SearchBooks books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
-				
+				<Footer />
 			</main>
 		)
 	}
