@@ -15,14 +15,24 @@ class LoginContainer extends Component {
 		})
 	}
 
+	handleSubmit = (e) => {
+		e.preventDefault()
+		console.log(this.state)
+		this.setState({
+			username: '',
+			password: ''
+		})
+	}
+
 	render() {
 		return(
-			<form>
+			<form onSubmit={this.handleSubmit}>
 				<h2>Log In</h2>
 				<input 
 					type="text" 
 					name="username" 
 					placeholder="Username"
+					value={this.state.username}
 					onChange={this.handleChange}
 				>
 				</input>
@@ -31,6 +41,7 @@ class LoginContainer extends Component {
 					type="password" 
 					name="password" 
 					placeholder="Password"
+					value={this.state.password}
 					onChange={this.handleChange}
 				>
 				</input>
