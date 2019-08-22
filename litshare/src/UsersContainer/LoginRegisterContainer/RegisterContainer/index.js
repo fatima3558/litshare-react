@@ -20,7 +20,7 @@ class RegisterContainer extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		console.log(this.state)
+		const loginInfo = this.state
 		this.setState({
 			username: '',
 			email: '',
@@ -28,6 +28,7 @@ class RegisterContainer extends Component {
 			bio: '',
 			zipcode: ''
 		})
+		this.props.toggleLogin(loginInfo.username)
 	}
 
 	render() {

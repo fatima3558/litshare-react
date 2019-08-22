@@ -6,7 +6,6 @@ class LoginRegisterContainer extends Component {
 	constructor() {
 		super()
 		this.state = {
-			loggedIn: false,
 			registered: true,
 		}
 	}
@@ -20,12 +19,19 @@ class LoginRegisterContainer extends Component {
 	render() {
 		return(
 			<div>
-				<h1>toggle between forms here</h1>
-				{this.state.registered ? 
-					<LoginContainer /> : 
-					<RegisterContainer />
+				<h1>Welcome to Litshare!</h1>
+				<h4>Share the Lit, Share the Love &hearts;</h4>
 				}
-				<button onClick={this.toggleRegistered}>{this.state.registered ? "Register" : "Login" }</button>
+				<br/>
+				{this.state.registered ? 
+					<LoginContainer 
+						loggedIn={this.props.loggedIn}
+						toggleLogin={this.props.toggleLogin}
+					/> : 
+					<RegisterContainer 
+						toggleLogin={this.props.toggleLogin}
+					/>
+				}
 			</div>
 		)
 	}

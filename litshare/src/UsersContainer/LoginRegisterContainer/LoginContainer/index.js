@@ -4,7 +4,7 @@ class LoginContainer extends Component {
 	constructor() {
 		super()
 		this.state = {
-			username: '',
+			email: '',
 			password: ''
 		}
 	}
@@ -15,13 +15,44 @@ class LoginContainer extends Component {
 		})
 	}
 
-	handleSubmit = (e) => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
-		console.log(this.state)
-		this.setState({
-			username: '',
-			password: ''
-		})
+		try {
+			// turn state into FormData()
+			const data = new FormData();
+			data.append('email', this.state.email)
+			data.append('password', this.state.password)
+			// query the database
+			const login = await fetch('http://localhost:8000/users/login', {
+				credentials: 'include',
+				method: 'POST',
+				body: data,
+				headers: {
+					'enctype': 'multipart/form-data'
+				}
+			})
+
+
+			// save response in an variable called loginResponse
+			const loginResponse = await login.json()
+			console.log(loginResponse);
+
+			if(loginResponse.status.code !== 200) {
+				throw Error("Resource Not Found")
+			} 
+
+			// reset state
+			this.setState({
+				username: '',
+				password: ''
+			})
+
+			// call on props function to toggleLogin
+			this.props.toggleLogin(loginResponse.username)
+
+		} catch(err) {
+			console.log(err);
+		}
 	}
 
 	render() {
@@ -30,8 +61,8 @@ class LoginContainer extends Component {
 				<h2>Log In</h2>
 				<input 
 					type="text" 
-					name="username" 
-					placeholder="Username"
+					name="email" 
+					placeholder="Email"
 					value={this.state.username}
 					onChange={this.handleChange}
 				>
