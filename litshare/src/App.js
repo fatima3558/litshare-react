@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom' 
 import UsersContainer from './UsersContainer';
+import BookContainer from './BookContainer'
 
 class App extends Component {
   constructor() {
@@ -40,14 +42,18 @@ class App extends Component {
     }
   }
 
+  
   render() {
     console.log(this.state);
     return (
       <div className="App">
-      <UsersContainer 
-        loggedIn={this.state.loggedIn}
-        toggleLogin={this.toggleLogin}
-      />
+        <main>
+          <Switch>
+            <Route exact path='/users' render={(props) => <UsersContainer {...props} loggedIn={this.loggedIn} toggleLogin={this.toggleLogin} /> } />
+            <Route exact path='/books' component={ BookContainer } />              
+          </Switch>
+        </main>
+      
       </div>
     )
   }
