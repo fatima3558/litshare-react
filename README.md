@@ -29,9 +29,9 @@ Lender will be able to decide how long the book will be loaned for and keep trac
 
 
 
-![wire frame](/wireframe/01.png)
-![wire frame](/wireframe/02.png)
-![wire frame](/wireframe/03.png)
+![wire frame](/wireframe/01.jpg)
+![wire frame](/wireframe/02.jpg)
+![wire frame](/wireframe/03.jpg)
 
 
 
