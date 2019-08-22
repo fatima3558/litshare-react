@@ -55,7 +55,7 @@ class RegisterContainer extends Component {
 			this.props.toggleLogin('fatima')
 			
 		} catch(err) {
-			
+			console.log(err);
 		}
 	}
 

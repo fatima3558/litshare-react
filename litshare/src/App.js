@@ -11,7 +11,7 @@ class App extends Component {
     }
   }
 
-  toggleLogin = (name) => {
+  toggleLogin = async (name) => {
     this.setState({
       loggedIn: !this.state.loggedIn
     })
@@ -20,13 +20,28 @@ class App extends Component {
         username: name
       })
     } else {
+      //reset state
       this.setState({
         username: 'Guest'
       })
+      try {
+        // query database to logout
+        await fetch('http://localhost:8000/users/logout', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+
+      } catch(err) {
+        console.log(err)
+      }
     }
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
       <UsersContainer 
