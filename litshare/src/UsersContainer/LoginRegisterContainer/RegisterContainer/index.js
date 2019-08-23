@@ -52,6 +52,7 @@ class RegisterContainer extends Component {
 				zipcode: ''
 			})
 			// call on props function to toggleLogin
+			this.props.toggleLogin(registerResponse.data)
 		    this.props.history.push('/books')
 		    			
 		} catch(err) {

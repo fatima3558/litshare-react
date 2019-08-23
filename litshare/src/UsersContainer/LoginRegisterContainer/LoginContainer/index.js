@@ -41,6 +41,7 @@ class LoginContainer extends Component {
 				throw Error("Resource Not Found")
 			} else {
 		    	this.props.history.push('/books')
+				this.props.toggleLogin(loginResponse.data)
 			}
 
 		} catch(err) {
