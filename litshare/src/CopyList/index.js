@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Grid } from 'semantic-ui-react'
+import { Divider, Grid, Button } from 'semantic-ui-react'
 
 class CopyList extends React.Component {
 	// /
@@ -35,13 +35,14 @@ class CopyList extends React.Component {
 		const singlecopy = this.state.copies.map(copy => {
 			return (
 				<Grid.Row key={copy.id} align='middle'>
-					<a>{copy.owner_id.username}</a><br/>
-					condition: {copy.condition}<br/>
-					edition: {copy.edition}<br/>
-					price: {copy.price}
+					<p><a>{copy.owner_id.username}</a> <br/>condition: {copy.condition}<br/>edition: {copy.edition}<br/>price: {copy.price}</p>
+					<Button>Delete</Button>
+					<Button>Edit</Button>
+					<Button>REQUEST</Button>
 				</Grid.Row>
 			)
 		})
+		// the buttons above shoule be able to toggle according to who is logged in 
 		return(
 			<Grid>
 			<h4>these guys have this book! hit them up</h4>
