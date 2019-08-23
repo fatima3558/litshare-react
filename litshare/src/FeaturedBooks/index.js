@@ -16,7 +16,7 @@ function FeaturedBooks (props){
 	}
 
 	const find3Books = bookArr.map((book,i) => {
-		const url = `books/${book.id}`
+		// const url = `books/${book.id}`
 		return (
 			<Grid.Column width={5} key={i} align='middle'>
 				<a onClick={props.displayOneBook.bind(null, book.id)}><Image size='small' src={book.URL} /></a>

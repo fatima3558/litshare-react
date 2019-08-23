@@ -102,6 +102,8 @@ class BookContainer extends React.Component{
 				{this.state.oneBook ? <SingleBook book={this.state.oneBook}/>: null}
 				<br/><br/><br/>
 				<Footer />
+
+				<br/><br/><br/>
 				<CreateBook />
 			</main>
 		)
