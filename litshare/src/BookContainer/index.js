@@ -153,9 +153,9 @@ class BookContainer extends React.Component{
 					'Content-Type': 'application/json'
 				}
 			})	
-			console.log(uploadCopyResponse,"<------upload book response");
+			// console.log(uploadCopyResponse,"<------upload book response");
 			const parsedResponse = await uploadCopyResponse.json()
-			console.log(parsedResponse,"<-----parsedresponse in uploadbook");
+			// console.log(parsedResponse,"<-----parsedresponse in uploadbook");
 			this.setState({
 				copies:[...this.state.copies, parsedResponse.data]
 			})
@@ -182,7 +182,7 @@ class BookContainer extends React.Component{
 				{this.state.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
 
-				{this.state.displayUploadCopy ? <CreateCopy addCopy={this.addCopy} currentBook={this.state.currentBook}/> : null}
+				{this.state.displayUploadCopy ? <CreateCopy displayCreateCopy={this.displayCreateCopy} addCopy={this.addCopy} currentBook={this.state.currentBook}/> : null}
 				<Footer toggleUpload={this.toggleUpload}/>
 
 				<br/><br/><br/>
