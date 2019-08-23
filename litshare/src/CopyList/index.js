@@ -35,7 +35,7 @@ class CopyList extends React.Component {
 		const singlecopy = this.state.copies.map(copy => {
 			return (
 				<Grid.Row key={copy.id} align='middle'>
-					<p><a>{copy.owner_id.username}</a> <br/>condition: {copy.condition}<br/>edition: {copy.edition}<br/>price: {copy.price}</p>
+					<p><a>{copy.owner_id.username}</a> <br/>condition: {copy.condition}<br/>edition: {copy.edition}<br/>price: {copy.price}</p><br/>
 					<Button>Delete</Button>
 					<Button>Edit</Button>
 					<Button>REQUEST</Button>
