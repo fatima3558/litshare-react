@@ -62,6 +62,28 @@ class BookContainer extends React.Component{
 
 	}
 
+	uploadBook = async (data) => {
+		try{
+			const uploadBookResponse = await fetch('http://localhost:8000/books/',{
+				method:'POST',
+				credentials: 'include',
+				body: data,
+				headers: {
+					'enctype':'multipart/form-data'
+				}
+			})	
+			console.log(uploadBookResponse,"<------upload book response");
+			const parsedResponse = await uploadBookResponse.json()
+			console.log(parsedResponse,"<-----parsedresponse in uploadbook");
+			this.setState({
+				books:[...this.state.books, parsedResponse.data]
+			})
+			return parsedResponse
+		}catch(err){
+			console.log(err)
+			return err
+		}
+	}
 
 
 	findBooksWithKeyword= async (keyword) => {
@@ -104,7 +126,7 @@ class BookContainer extends React.Component{
 				<Footer />
 
 				<br/><br/><br/>
-				<CreateBook />
+				<CreateBook uploadBook={this.uploadBook}/>
 			</main>
 		)
 	}
