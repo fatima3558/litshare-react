@@ -106,7 +106,7 @@ class BookContainer extends React.Component{
 	      		oneBook: null
 	      	})
 
-    	}catch(err){
+    	} catch(err){
      		console.log(err)
       		return err 
     	}
@@ -119,6 +119,7 @@ class BookContainer extends React.Component{
 			<main>
 				<Header findBooksWithKeyword={this.findBooksWithKeyword}/>
 				<br/><br/><br/>
+
 				{!this.state.keyword && !this.state.oneBook ? <FeaturedBooks displayOneBook={this.displayOneBook} books={this.state.books}/> : null}
 				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 
@@ -129,6 +130,7 @@ class BookContainer extends React.Component{
 
 				<br/><br/><br/>
 				<CreateBook uploadBook={this.uploadBook}/>
+
 			</main>
 		)
 	}
