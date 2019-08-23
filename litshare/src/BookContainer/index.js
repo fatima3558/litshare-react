@@ -134,7 +134,7 @@ class BookContainer extends React.Component{
 				<br/><br/><br/>
 				{this.state.oneBook && !this.state.keyword? <SingleBook book={this.state.oneBook}/>: null}
 				
-				{this.state.displayUpload ? <CreateBook toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
+				{this.state.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
 				<Footer toggleUpload={this.toggleUpload}/>
 
