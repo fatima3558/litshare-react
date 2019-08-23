@@ -71,7 +71,7 @@ class App extends Component {
                   loggedIn={this.state.loggedIn} 
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
-                  user={this.state.user}
+                  user={this.state.loggedInUser}
                 /> 
               } 
             />
