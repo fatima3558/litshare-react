@@ -39,16 +39,9 @@ class LoginContainer extends Component {
 
 			if(loginResponse.status.code !== 200) {
 				throw Error("Resource Not Found")
-			} 
-
-			// reset state
-			this.setState({
-				username: '',
-				password: ''
-			})
-
-			// call on props function to toggleLogin
-			this.props.toggleLogin(loginResponse.data.username)
+			} else {
+		    	this.props.history.push('/books')
+			}
 
 		} catch(err) {
 			console.log(err);

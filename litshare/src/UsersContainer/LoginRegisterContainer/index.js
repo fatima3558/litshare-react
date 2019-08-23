@@ -18,12 +18,12 @@ class LoginRegisterContainer extends Component {
 				<br/>
 				{this.props.registered ? 
 					<LoginContainer 
+						{...this.props}
 						loggedIn={this.props.loggedIn}
-						toggleLogin={this.props.toggleLogin}
 						registered={this.props.registered}
 					/> : 
 					<RegisterContainer 
-						toggleLogin={this.props.toggleLogin}
+						{...this.props}
 						registered={this.props.registered}
 					/>
 				}

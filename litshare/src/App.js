@@ -9,7 +9,8 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      username: 'Guest'
+      username: 'Guest',
+      history: []
     }
   }
 
@@ -41,7 +42,6 @@ class App extends Component {
       }
     }
   }
-
   
   render() {
     console.log(this.state);

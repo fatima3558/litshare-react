@@ -31,9 +31,9 @@ class UsersContainer extends Component {
 							onClick={this.toggleRegistered}>{this.state.registered ? "Register" : "Login" }
 						</button>
 						<LoginRegisterContainer 
+							{...this.props}
 							loggedIn={this.props.loggedIn}
 							registered={this.state.registered}
-							toggleLogin={this.props.toggleLogin}
 						/>
 					</div>
 				}
