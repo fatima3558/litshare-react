@@ -182,7 +182,7 @@ class BookContainer extends React.Component{
 				{this.state.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
 
-				{this.state.displayUploadCopy ? <CreateCopy addCopy={this.addCopy} currentBook={this.state.currentBook}/> : null}
+				{this.state.displayUploadCopy ? <CreateCopy displayCreateCopy={this.displayCreateCopy} addCopy={this.addCopy} currentBook={this.state.currentBook}/> : null}
 				<Footer toggleUpload={this.toggleUpload}/>
 
 				<br/><br/><br/>

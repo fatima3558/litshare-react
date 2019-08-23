@@ -1,6 +1,6 @@
 import React from 'react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
-
+import CopyList from '../CopyList'
 
 function SingleBook(props){
 	console.log(props.book.id,"<-----bookid");
@@ -20,7 +20,7 @@ function SingleBook(props){
 			</Grid.Column>
 				
 			<Grid.Column width={5} align='middle'>
-				copy info
+				<CopyList />
 			</Grid.Column>
 		</Grid>
 	)
