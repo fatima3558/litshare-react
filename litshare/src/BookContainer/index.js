@@ -7,6 +7,8 @@ import SearchBooks from '../SearchBooks'
 import Footer from '../Footer'
 import SingleBook from '../SingleBook'
 import CreateBook from '../CreateBook'
+import CreateCopy from '../CreateCopy'
+
 
 
 class BookContainer extends React.Component{
@@ -17,7 +19,9 @@ class BookContainer extends React.Component{
 			keywordbooks:[],
 			keyword:'',
 			oneBook: null,
-			displayUpload: false 
+			displayUpload: false,
+			currentBook: null,
+			displayUploadCopy: false
 		}
 	}
 
@@ -45,6 +49,7 @@ class BookContainer extends React.Component{
 		}
 
 	}
+
 
 
 	displayOneBook = async (bookId) => {
@@ -121,6 +126,17 @@ class BookContainer extends React.Component{
   		})
   	}
 
+
+  	displayCreateCopy = (book) => {
+  		console.log(book, "bookid in book container lifted up with createcopu");
+  		this.setState({
+  			currentBook: book,
+  			displayUploadCopy: true
+  		})
+  		// here should be able to toggle the form Createcopy and setbookid in the state
+  	}
+
+
 	render(){
 		console.log(this.state,"<-----state in the boookcontainer");
 		return(
@@ -132,10 +148,12 @@ class BookContainer extends React.Component{
 				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 
 				<br/><br/><br/>
-				{this.state.oneBook && !this.state.keyword? <SingleBook book={this.state.oneBook}/>: null}
+				{this.state.oneBook && !this.state.keyword? <SingleBook displayCreateCopy={this.displayCreateCopy} book={this.state.oneBook}/>: null}
 				
 				{this.state.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
+
+				{this.state.displayUploadCopy ? <CreateCopy currentBook={this.state.currentBook}/> : null}
 				<Footer toggleUpload={this.toggleUpload}/>
 
 				<br/><br/><br/>

@@ -3,6 +3,8 @@ import { Divider, Grid, Image } from 'semantic-ui-react'
 
 
 function SingleBook(props){
+	console.log(props.book.id,"<-----bookid");
+	console.log(props,",<-----props in singlbook");
 
 	return(
 		<Grid>
@@ -14,7 +16,7 @@ function SingleBook(props){
 				Title: <p>{props.book.title}</p><br/><br/>
 				Author: <p>{props.book.author}</p><br/><br/>
 				Summary: <p>{props.book.summary}</p><br/><br/><br/><br/>
-				<a href='onlick'> Add a copy</a> 
+				<a onClick={props.displayCreateCopy.bind(null,props.book)}> Add a copy</a> 
 			</Grid.Column>
 				
 			<Grid.Column width={5} align='middle'>
