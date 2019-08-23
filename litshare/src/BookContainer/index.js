@@ -56,7 +56,8 @@ class BookContainer extends React.Component{
 		const parsedResponse = await findOneBookResponse.json()
 		console.log(parsedResponse,"<----findone book response ");
 		this.setState({
-			oneBook: parsedResponse.data
+			oneBook: parsedResponse.data,
+			keyword: null
 		})
 
 
@@ -101,7 +102,8 @@ class BookContainer extends React.Component{
 	      	console.log(prasedResponse,"<-------searchbooks parsedResponse");
 	      	this.setState({
 	      		keywordbooks:[...prasedResponse.data],
-	      		keyword: keyword
+	      		keyword: keyword,
+	      		oneBook: null
 	      	})
 
     	}catch(err){
@@ -117,11 +119,11 @@ class BookContainer extends React.Component{
 			<main>
 				<Header findBooksWithKeyword={this.findBooksWithKeyword}/>
 				<br/><br/><br/>
-				{this.state.keyword && !this.state.oneBook ? null : <FeaturedBooks displayOneBook={this.displayOneBook} books={this.state.books}/>}
+				{!this.state.keyword && !this.state.oneBook ? <FeaturedBooks displayOneBook={this.displayOneBook} books={this.state.books}/> : null}
 				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 
 				<br/><br/><br/>
-				{this.state.oneBook ? <SingleBook book={this.state.oneBook}/>: null}
+				{this.state.oneBook && !this.state.keyword? <SingleBook book={this.state.oneBook}/>: null}
 				<br/><br/><br/>
 				<Footer />
 

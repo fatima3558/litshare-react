@@ -7,7 +7,7 @@ function SearchBooks(props){
 	const displaySearchBook = props.books.map(book => {
 		return (
 			<Grid.Column width={5} key={book.id} align='middle'>
-				<Image size='small' src={book.URL} />
+				<a onClick={props.displayOneBook.bind(null, book.id)}><Image size='small' src={book.URL} /></a>
 				<h4>{book.title}</h4>
 			</Grid.Column> 
 		)
