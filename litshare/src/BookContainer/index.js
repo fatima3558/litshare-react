@@ -5,6 +5,7 @@ import FeaturedBooks from '../FeaturedBooks'
 import Header from '../Header'
 import SearchBooks from '../SearchBooks'
 import Footer from '../Footer'
+import SingleBook from '../SingleBook'
 import CreateBook from '../CreateBook'
 
 
@@ -15,7 +16,7 @@ class BookContainer extends React.Component{
 			books:[],
 			keywordbooks:[],
 			keyword:'',
-			oneBook: {}
+			oneBook: null
 		}
 	}
 
@@ -94,8 +95,12 @@ class BookContainer extends React.Component{
 			<main>
 				<Header findBooksWithKeyword={this.findBooksWithKeyword}/>
 				<br/><br/><br/>
-				{this.state.keyword ? null : <FeaturedBooks displayOneBook={this.displayOneBook} books={this.state.books}/>}
-				{this.state.keyword? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
+				{this.state.keyword && !this.state.oneBook ? null : <FeaturedBooks displayOneBook={this.displayOneBook} books={this.state.books}/>}
+				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
+
+				<br/><br/><br/>
+				{this.state.oneBook ? <SingleBook book={this.state.oneBook}/>: null}
+				<br/><br/><br/>
 				<Footer />
 				<CreateBook />
 			</main>
