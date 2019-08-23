@@ -15,7 +15,7 @@ function Footer(){
 					<p>© 2019 <i>LITSHARE</i> by Chris, Fatima, Yuzhu</p>
 				</Grid.Column>
 				<Grid.Column width={3} align='middle'>
-					<a>upload a book</a>
+					<a href='#'>upload a book</a>
 				</Grid.Column>
 			</Grid>
 		</Sticky>

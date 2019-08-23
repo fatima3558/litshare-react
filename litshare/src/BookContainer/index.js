@@ -5,6 +5,7 @@ import FeaturedBooks from '../FeaturedBooks'
 import Header from '../Header'
 import SearchBooks from '../SearchBooks'
 import Footer from '../Footer'
+import CreateBook from '../CreateBook'
 
 
 class BookContainer extends React.Component{
@@ -13,7 +14,8 @@ class BookContainer extends React.Component{
 		this.state={
 			books:[],
 			keywordbooks:[],
-			keyword:''
+			keyword:'',
+			oneBook: {}
 		}
 	}
 
@@ -41,6 +43,25 @@ class BookContainer extends React.Component{
 		}
 
 	}
+
+
+	displayOneBook = async (bookId) => {
+		const findOneBookResponse = await fetch(`http://localhost:8000/books/${bookId}`,{
+			method: 'GET',
+			credentials: 'include'
+		})
+
+		// console.log(findOneBookResponse,"<------findone book resposne in bookcontainer");
+		const parsedResponse = await findOneBookResponse.json()
+		console.log(parsedResponse,"<----findone book response ");
+		this.setState({
+			oneBook: parsedResponse.data
+		})
+
+
+	}
+
+
 
 	findBooksWithKeyword= async (keyword) => {
     	try{
@@ -73,9 +94,10 @@ class BookContainer extends React.Component{
 			<main>
 				<Header findBooksWithKeyword={this.findBooksWithKeyword}/>
 				<br/><br/><br/>
-				{this.state.keyword ? null : <FeaturedBooks books={this.state.books}/>}
-				{this.state.keyword? <SearchBooks books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
+				{this.state.keyword ? null : <FeaturedBooks displayOneBook={this.displayOneBook} books={this.state.books}/>}
+				{this.state.keyword? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 				<Footer />
+				<CreateBook />
 			</main>
 		)
 	}
