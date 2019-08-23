@@ -153,9 +153,9 @@ class BookContainer extends React.Component{
 					'Content-Type': 'application/json'
 				}
 			})	
-			console.log(uploadCopyResponse,"<------upload book response");
+			// console.log(uploadCopyResponse,"<------upload book response");
 			const parsedResponse = await uploadCopyResponse.json()
-			console.log(parsedResponse,"<-----parsedresponse in uploadbook");
+			// console.log(parsedResponse,"<-----parsedresponse in uploadbook");
 			this.setState({
 				copies:[...this.state.copies, parsedResponse.data]
 			})

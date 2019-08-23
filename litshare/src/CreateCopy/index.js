@@ -26,7 +26,7 @@ class CreateCopy extends React.Component {
 		const addCopyCall = this.props.addCopy({...this.state})
 
 	    addCopyCall.then((data) => {
-	      console.log(data)
+	      // console.log(data)
 	        if(data.status.message === "success"){
 	          // this.props.history.push('/profile')
 	          console.log('success????');
