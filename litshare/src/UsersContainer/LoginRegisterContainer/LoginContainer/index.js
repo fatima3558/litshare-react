@@ -48,7 +48,7 @@ class LoginContainer extends Component {
 			})
 
 			// call on props function to toggleLogin
-			this.props.toggleLogin(loginResponse.username)
+			this.props.toggleLogin(loginResponse.data.username)
 
 		} catch(err) {
 			console.log(err);

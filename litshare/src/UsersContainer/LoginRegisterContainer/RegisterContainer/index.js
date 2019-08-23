@@ -52,7 +52,7 @@ class RegisterContainer extends Component {
 				zipcode: ''
 			})
 			// call on props function to toggleLogin
-			this.props.toggleLogin('fatima')
+			this.props.toggleLogin(registerResponse.data.username)
 			
 		} catch(err) {
 			console.log(err);

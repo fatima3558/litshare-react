@@ -58,7 +58,7 @@ class BookContainer extends React.Component{
 	      		keyword: keyword
 	      	})
 
-    	}catch(err){
+    	} catch(err){
      		console.log(err)
       		return err 
     	}
@@ -72,7 +72,7 @@ class BookContainer extends React.Component{
 				<Header findBooksWithKeyword={this.findBooksWithKeyword}/>
 				<br/><br/><br/>
 				{this.state.keyword ? null : <FeaturedBooks books={this.state.books}/>}
-				{this.state.keyword? <SearchBooks books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
+				{this.state.keyword ? <SearchBooks books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 				
 			</main>
 		)

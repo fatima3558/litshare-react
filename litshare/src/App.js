@@ -49,8 +49,19 @@ class App extends Component {
       <div className="App">
         <main>
           <Switch>
-            <Route exact path='/users' render={(props) => <UsersContainer {...props} loggedIn={this.loggedIn} toggleLogin={this.toggleLogin} /> } />
-            <Route exact path='/books' component={ BookContainer } />              
+            <Route 
+              exact path='/users' 
+              render={(props) => 
+                <UsersContainer {...props} 
+                  loggedIn={this.loggedIn} 
+                  toggleLogin={this.toggleLogin} 
+                /> 
+              } 
+            />
+            <Route 
+              exact path='/books' 
+              component={ BookContainer } 
+            />              
           </Switch>
         </main>
       
