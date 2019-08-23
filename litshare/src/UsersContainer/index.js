@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginRegisterContainer from './LoginRegisterContainer';
+import UserInfoContainer from './UserInfoContainer'
 
 class UsersContainer extends Component {
 	constructor() {
@@ -21,22 +22,31 @@ class UsersContainer extends Component {
 	}
 
 	render() {
+		console.log("this is propsin UsersContainer below:");
+		console.log(this.props);
+	// 	console.log("this is statein UsersContainer below:");
+	// 	console.log(this.state);
 		return(
 			<div>
-				<h1>Users Container to hold all 'users' routes</h1>
-				{this.props.loggedIn ? 
-					<button onClick={this.handleClick}>Log Out</button> :
+				<h1>You are logged in as: {this.props.username}</h1>
 					<div>
-						<button 
-							onClick={this.toggleRegistered}>{this.state.registered ? "Register" : "Login" }
-						</button>
-						<LoginRegisterContainer 
-							{...this.props}
-							loggedIn={this.props.loggedIn}
-							registered={this.state.registered}
-						/>
+						{this.props.loggedIn ? 
+							<div>
+								<UserInfoContainer 
+									{...this.props}
+								/> 
+							</div> :
+							<div>
+								<button 
+									onClick={this.toggleRegistered}>{this.state.registered ? "Register" : "Login" }
+								</button>
+								<LoginRegisterContainer 
+									{...this.props}
+									registered={this.state.registered}
+								/>
+							</div>
+						}
 					</div>
-				}
 			</div>
 		)
 	}

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom' 
 import UsersContainer from './UsersContainer';
-import BookContainer from './BookContainer'
+import BookContainer from './BookContainer';
+import Header from './Header';
+import Footer from './Footer';
 
 class App extends Component {
   constructor() {
@@ -10,40 +12,53 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: 'Guest',
-      history: []
+      loggedInUser: {}
     }
   }
 
-  toggleLogin = async (name) => {
+  toggleLogin = async (user) => {
     this.setState({
       loggedIn: !this.state.loggedIn
     })
     if (this.state.loggedIn === true) {
+      console.log("this is app.js toggleLogin() user.username:", user.username);
       this.setState({
-        username: name
+        username: user.username,
+        loggedInUser: user
       })
-    } else {
-      //reset state
-      this.setState({
-        username: 'Guest'
-      })
-      try {
+    } else 
+    if (this.state.loggedIn === false) {
         // query database to logout
-        await fetch('http://localhost:8000/users/logout', {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json'
-          }
+        console.log("things before api call to log out");
+        try {
+          await fetch('http://localhost:8000/users/logout', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+        console.log("things after api call to log out");
+        //reset state
+        this.setState({
+          username: 'Guest',
+
         })
+
 
       } catch(err) {
         console.log(err)
       }
     }
   }
+
+  getUserInfo = async () => {
+    //method after books component renders to get user info and set login
+        console.log("getting user info here");
+  }
   
   render() {
+    console.log("state in app.js below:");
     console.log(this.state);
     return (
       <div className="App">
@@ -53,15 +68,23 @@ class App extends Component {
               exact path='/users' 
               render={(props) => 
                 <UsersContainer {...props} 
-                  loggedIn={this.loggedIn} 
-                  toggleLogin={this.toggleLogin} 
+                  loggedIn={this.state.loggedIn} 
+                  toggleLogin={this.toggleLogin}
+                  username={this.state.username}
+                  user={this.state.user}
                 /> 
               } 
             />
             <Route 
               exact path='/books' 
-              component={ BookContainer } 
-            />              
+              render={(props) =>
+                <BookContainer {...props}
+                  loggedIn={this.state.loggedIn}
+                  toggleLogin={this.toggleLogin}
+                  username={this.state.username}
+                /> 
+              }
+            />
           </Switch>
         </main>
       

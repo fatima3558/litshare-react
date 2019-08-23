@@ -23,7 +23,7 @@ class CreateBook extends React.Component{
 		e.preventDefault()
 		const addBookCall = this.props.uploadBook(this.state)
 
-		console.log(addBookCall);
+		// console.log(addBookCall);
 		addBookCall.then((data) => {
 			if(data.status.message === "success"){
 	          // this.props.history.push('/books')
@@ -47,7 +47,7 @@ class CreateBook extends React.Component{
 
 
 	render(){
-		console.log(this.state);
+		// console.log(this.state);
 		return(
 			<div>
 				<h1>Upload a book you like</h1>

@@ -3,7 +3,7 @@ import { Grid, Image } from 'semantic-ui-react'
 
 
 function SearchBooks(props){
-	console.log(props,"<-----props in searchbooks");
+	// console.log(props,"<-----props in searchbooks");
 	const displaySearchBook = props.books.map(book => {
 		return (
 			<Grid.Column width={5} key={book.id} align='middle'>

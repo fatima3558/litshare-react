@@ -25,8 +25,12 @@ class Header extends React.Component{
 		})
 	}
 
+	showUserInfo = () => {
+		this.props.history.push('/users')
+	}
+
 	render(){
-		console.log(this.state);	
+		// console.log(this.state);	
 		return (
 				<Grid>
 					<Grid.Column width={4}>
@@ -38,12 +42,13 @@ class Header extends React.Component{
 					<Grid.Column width={8}>
 						<h1 align='middle'> LITSHARE </h1>
 					</Grid.Column>
-					<Grid.Column width={4} align='right'>
-						<a href='/users/register'>register</a><br/>
- 						<a href='/users/login'>login</a><br/>
-						<a>username</a><br/>
-						<a>logout</a>			
-					</Grid.Column>
+						{this.props.loggedIn ? 
+							<Grid.Column width={4} align='right'>
+								<a onClick={this.showUserInfo}>{this.props.username}</a><br/>
+								<button onClick={this.props.toggleLogin}>Log Out</button> 
+							</Grid.Column> :
+							null
+						}
 				</Grid>
 		)
 	}

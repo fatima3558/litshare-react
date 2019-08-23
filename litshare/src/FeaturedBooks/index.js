@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, Image } from 'semantic-ui-react'
 
 function FeaturedBooks (props){
-	console.log(props, "<-------props from the FeaturedBooks");
+	// console.log(props, "<-------props from the FeaturedBooks");
 	const booksLength = props.books.length
 	const randomNum = (length) => {
 		return Math.floor(Math.random() * Math.floor(length))
