@@ -16,7 +16,8 @@ class BookContainer extends React.Component{
 			books:[],
 			keywordbooks:[],
 			keyword:'',
-			oneBook: null
+			oneBook: null,
+			displayUpload: false 
 		}
 	}
 
@@ -112,6 +113,13 @@ class BookContainer extends React.Component{
     	}
   	}
 
+  	toggleUpload = () => {
+  		this.setState({
+  			displayUpload: this.state.displayUpload ? false : true,
+  			oneBook: null,
+  			keyword:null
+  		})
+  	}
 
 	render(){
 		console.log(this.state,"<-----state in the boookcontainer");
@@ -125,11 +133,12 @@ class BookContainer extends React.Component{
 
 				<br/><br/><br/>
 				{this.state.oneBook && !this.state.keyword? <SingleBook book={this.state.oneBook}/>: null}
+				
+				{this.state.displayUpload ? <CreateBook toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
-				<Footer />
+				<Footer toggleUpload={this.toggleUpload}/>
 
 				<br/><br/><br/>
-				<CreateBook uploadBook={this.uploadBook}/>
 
 			</main>
 		)

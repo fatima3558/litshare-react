@@ -38,6 +38,14 @@ class CreateBook extends React.Component{
 	          console.log(data, ' unsuccessful')
 	        }
 		})
+		this.props.toggleUpload()
+		this.setState({
+			title: '',
+			author:'',
+			ISBN:'',
+			summary:'',
+			URL:'',
+		})
 	}
 
 

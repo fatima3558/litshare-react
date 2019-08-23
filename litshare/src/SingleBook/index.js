@@ -14,10 +14,11 @@ function SingleBook(props){
 				Title: <p>{props.book.title}</p><br/><br/>
 				Author: <p>{props.book.author}</p><br/><br/>
 				Summary: <p>{props.book.summary}</p><br/><br/><br/><br/>
-				<a> Add a copy</a> 
+				<a href='onlick'> Add a copy</a> 
 			</Grid.Column>
-				copy info
+				
 			<Grid.Column width={5} align='middle'>
+				copy info
 			</Grid.Column>
 		</Grid>
 	)
