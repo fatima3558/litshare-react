@@ -2,6 +2,8 @@ import React from 'react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
 import CopyList from '../CopyList'
 import CreateCopy from '../CreateCopy'
+import EditCopy from '../EditCopy'
+
 
 class SingleBook extends React.Component{
 	// this.props.book.id is the single book id 
@@ -10,7 +12,8 @@ class SingleBook extends React.Component{
 		this.state ={
 			displayUploadCopy: false,
 			copies:[],
-			addedCopy: null
+			addedCopy: null,
+			displayEditCopy: false 
 		}
 	}
 
@@ -91,6 +94,12 @@ class SingleBook extends React.Component{
 		})
 	}
 
+	displayEditCopy = () => {
+		this.setState({
+			displayEditCopy: this.state.displayEditCopy ? false : true 
+		})
+	}
+
 	render(){	
 		return(
 			<div>
@@ -107,9 +116,10 @@ class SingleBook extends React.Component{
 					</Grid.Column>
 						
 					<Grid.Column width={5} align='middle'>
-						<CopyList deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} copies={this.state.copies}/>
+						<CopyList deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} displayEditCopy={this.displayEditCopy} copies={this.state.copies}/>
 					</Grid.Column>
 				</Grid>
+				{this.state.displayEditCopy ? <EditCopy displayEditCopy={this.displayEditCopy}/> :null}
 				{this.state.displayUploadCopy ? <CreateCopy displayCreateCopy={this.displayCreateCopy} addCopy={this.addCopy} /> : null}
 			</div>
 		)

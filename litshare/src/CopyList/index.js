@@ -1,6 +1,5 @@
 import React from 'react'
 import { Divider, Grid, Button } from 'semantic-ui-react'
-// import CreateCopy from '../CreateCopy'
 
 function CopyList(props){
 	const singlecopy = props.copies.map(copy => {
@@ -8,7 +7,7 @@ function CopyList(props){
 			<Grid.Row key={copy.id} align='middle'>
 				<p><a>{copy.owner_id.username}</a> <br/>condition: {copy.condition}<br/>edition: {copy.edition}<br/>price: {copy.price}<br/>rental time: {copy.rental_time} days</p><br/>
 				<Button onClick={props.deleteOneCopy.bind(null, copy.id)}>Delete</Button>
-				<Button>Edit</Button>
+				<Button onClick={props.displayEditCopy.bind(null)}>Edit</Button>
 				<Button>REQUEST</Button>
 			</Grid.Row>
 		)
