@@ -34,8 +34,6 @@ class CreateCopy extends React.Component {
 	          console.log(data, ' this should have an error message? How could you display that on the screen')
 	        }
 	    })
-
-	    this.props.displayCreateCopy(this.props.book)
 	}
 
 	render(){
