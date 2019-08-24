@@ -5,6 +5,7 @@ import UsersContainer from './UsersContainer';
 import BookContainer from './BookContainer';
 import Header from './Header';
 import Footer from './Footer';
+import RequestsContainer from './RequestsContainer'
 
 class App extends Component {
   constructor() {
@@ -85,6 +86,7 @@ class App extends Component {
                 /> 
               }
             />
+            <Route exact path='/requests' component={RequestsContainer} user={this.state.loggedInUser} />
           </Switch>
         </main>
       
