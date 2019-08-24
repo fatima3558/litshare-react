@@ -21,22 +21,27 @@ class CreateBook extends React.Component{
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		const data = new FormData()
-		data.append('title', this.state.title)
-		data.append('author', this.state.author)
-		data.append('summary', this.state.summary)
-		data.append('ISBN', this.state.ISBN)
-		data.append('URL', this.state.URL)
-		const addBookCall = this.props.uploadBook(data)
+		const addBookCall = this.props.uploadBook(this.state)
 
 		// console.log(addBookCall);
 		addBookCall.then((data) => {
 			if(data.status.message === "success"){
 	          // this.props.history.push('/books')
-	          console.log('success????');
+	          // console.log(data.data);
+	          	console.log('success????');
 	        } else {
 	          console.log(data, ' unsuccessful')
 	        }
+		})
+
+
+		this.props.toggleUpload()
+		this.setState({
+			title: '',
+			author:'',
+			ISBN:'',
+			summary:'',
+			URL:'',
 		})
 	}
 

@@ -9,7 +9,7 @@ function FeaturedBooks (props){
 	}
 	let bookArr
 	// console.log(length);
-	if(booksLength < 3){
+	if(booksLength <= 3){
 		bookArr = props.books
 	} else if(booksLength > 3) {	
 		bookArr = [props.books[randomNum(booksLength)],props.books[randomNum(booksLength)],props.books[randomNum(booksLength)]]

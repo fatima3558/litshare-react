@@ -28,25 +28,24 @@ class UsersContainer extends Component {
 	// 	console.log(this.state);
 		return(
 			<div>
-				<h1>You are logged in as: {this.props.username}</h1>
-					<div>
-						{this.props.loggedIn ? 
-							<div>
-								<UserInfoContainer 
-									{...this.props}
-								/> 
-							</div> :
-							<div>
-								<button 
-									onClick={this.toggleRegistered}>{this.state.registered ? "Register" : "Login" }
-								</button>
-								<LoginRegisterContainer 
-									{...this.props}
-									registered={this.state.registered}
-								/>
-							</div>
-						}
-					</div>
+				<div>
+					{this.props.loggedIn ? 
+						<div>
+							<UserInfoContainer 
+								{...this.props}
+							/> 
+						</div> :
+						<div>
+							<LoginRegisterContainer 
+								{...this.props}
+								registered={this.state.registered}
+							/>
+							<button 
+								onClick={this.toggleRegistered}>{this.state.registered ? "Need to Register?" : "Already Have an Account?" }
+							</button>
+						</div>
+					}
+				</div>
 			</div>
 		)
 	}
