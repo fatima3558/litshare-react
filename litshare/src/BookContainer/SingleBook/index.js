@@ -1,8 +1,8 @@
 import React from 'react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
-import CopyList from '../CopyList'
-import CreateCopy from '../CreateCopy'
-import EditCopy from '../EditCopy'
+import CopyList from './CopyList'
+import CreateCopy from './CreateCopy'
+import EditCopy from './EditCopy'
 
 
 class SingleBook extends React.Component{

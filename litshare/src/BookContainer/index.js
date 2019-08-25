@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom' 
 import { } from 'semantic-ui-react'
-import FeaturedBooks from '../FeaturedBooks'
+import FeaturedBooks from './FeaturedBooks'
 import Header from '../Header'
-import SearchBooks from '../SearchBooks'
+import SearchBooks from './SearchBooks'
 import Footer from '../Footer'
-import SingleBook from '../SingleBook'
-import CreateBook from '../CreateBook'
+import SingleBook from './SingleBook'
+import CreateBook from './CreateBook'
 
 
 
