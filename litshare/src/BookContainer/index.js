@@ -119,8 +119,8 @@ class BookContainer extends React.Component{
   	toggleUpload = () => {
   		this.setState({
   			displayUpload: this.state.displayUpload ? false : true,
-  			oneBook: null,
-  			keyword:null
+  			keyword:null,
+  			oneBook: null
   		})
   	}
 

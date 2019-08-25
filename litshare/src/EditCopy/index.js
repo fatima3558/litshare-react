@@ -30,6 +30,7 @@ class EditCopy extends React.Component{
 	handleSubmit = (e) => {
 		e.preventDefault()
 		this.props.displayEditCopy()
+		this.props.updateEditCopy(this.state)
 
 
 	}

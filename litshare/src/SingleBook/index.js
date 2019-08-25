@@ -14,6 +14,7 @@ class SingleBook extends React.Component{
 			copies:[],
 			addedCopy: null,
 			displayEditCopy: false,
+			bookid:null
 		}
 	}
 
@@ -80,7 +81,7 @@ class SingleBook extends React.Component{
 
   	deleteOneCopy = async (copyId) => {
 		console.log(copyId,"<-------should be the copyid!!!");
-		const url = `http://localhost:8000/books/${this.props.bookid}/copy/${copyId}`
+		const url = `http://localhost:8000/books/${this.props.book.id}/copy/${copyId}`
 		const deleteOneCopyResponse = await fetch(url, {
 			method: 'DELETE',
 			credentials: 'include'
@@ -104,7 +105,31 @@ class SingleBook extends React.Component{
 	}
 
 	updateEditCopy= async (data) => {
-		
+		const url = `http://localhost:8000/books/${this.props.book.id}/copy/${this.state.copyToEdit.id}`
+		console.log(url,"<------url in updateEditCopy");
+		const editCopyResponse = await fetch(url,{
+			method:'PUT',
+			credentials: 'include',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		// console.log(editCopyResponse,"<o----------edit copy response");
+		const parsedResponse = await editCopyResponse.json()
+		console.log(parsedResponse.data,"<<-----response in copy response");
+		const newCopiesData = this.state.copies.map(copy => {
+				if(copy.id===parsedResponse.data.id){
+					return parsedResponse.data
+				}else {
+					return copy
+				}
+		})
+		// console.log(this.state.copies,"<-------state.copies");
+		// console.log(newCopiesData,"<-------newstate to set");
+		this.setState({
+			copies: newCopiesData
+		})
 	}
 
 
