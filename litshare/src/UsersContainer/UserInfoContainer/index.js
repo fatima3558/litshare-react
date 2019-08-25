@@ -15,6 +15,23 @@ class UserInfoContainer extends React.Component {
 		})
 	}
 
+	deleteUser = async (e) => {
+		try {
+			const deletedUser = await fetch('http://localhost:8000/users/' + this.props.user.id, {
+				credentials: 'include',
+				method: 'delete'
+			})
+
+			const deletedUserResponse = await deletedUser.json()
+
+			console.log(deletedUserResponse, "deleted User response");
+
+			this.props.toggleLogin()
+		} catch(err) {
+			console.log(err);
+		}
+	}
+
 	render() {
 		return(
 			<div>
@@ -31,6 +48,8 @@ class UserInfoContainer extends React.Component {
 					</div>
 				}
 				<button onClick={this.toggleEdit}>{this.state.editing ? "Done" : "Edit Info"}</button>
+				<h4><span>Or </span></h4>
+				<button onClick={this.deleteUser}>Delete Your Account</button>
 			</div>
 		)
 	}
