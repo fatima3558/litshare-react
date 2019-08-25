@@ -17,8 +17,6 @@ class CreateCopy extends React.Component {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
-		// there shoule be a prop that is the book id 
-		// current user should already be passed down through flask 
 	}
 
 	handleSubmit = (e) => {

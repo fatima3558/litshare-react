@@ -12,6 +12,15 @@ class EditCopy extends React.Component{
 		}
 	}
 
+	componentDidMount(){
+		this.setState({
+			edition: this.props.copyToEdit.edition,
+			condition: this.props.copyToEdit.condition,
+			price: this.props.copyToEdit.price,
+			rental_time: this.props.copyToEdit.rental_time
+		})
+	}
+
 	handleChange=(e) => {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -21,18 +30,21 @@ class EditCopy extends React.Component{
 	handleSubmit = (e) => {
 		e.preventDefault()
 		this.props.displayEditCopy()
+
+
 	}
 
 	render(){
+		console.log(this.state);
 		return(
 
 			<div>
 				edit copy from
 				<Form onSubmit={this.handleSubmit}>
-					Edition: <Input type='text' name='edition' value={this.state.edition} palceholder='somethin' onChange={this.handleChange} /> <br/>
-					Condition: <Input type='text' name='condition' value={this.state.condition} palceholder='somethin' onChange={this.handleChange} /> <br/>
-					Price: <Input type='number' name='price' value={this.state.price} palceholder='somethin' onChange={this.handleChange} /> <br/>
-					Rental time: <Input type='number' name='rental_time' value={this.state.rental_time} palceholder='somethin' onChange={this.handleChange} /> <br/>
+					Edition: <Input type='text' name='edition' value={this.state.edition} placeholder={this.state.edition} onChange={this.handleChange} /> <br/>
+					Condition: <Input type='text' name='condition' value={this.state.condition} placeholder={this.state.condition} onChange={this.handleChange} /> <br/>
+					Price: <Input type='number' name='price' value={this.state.price} placeholder={this.state.price} onChange={this.handleChange} /> <br/>
+					Rental time: <Input type='number' name='rental_time' value={this.state.rental_time} placeholder={this.state.rental_time} onChange={this.handleChange} /> <br/>
 					<Button>Submit</Button>
 				</Form>
 			</div>

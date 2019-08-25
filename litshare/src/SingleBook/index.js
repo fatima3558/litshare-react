@@ -13,7 +13,7 @@ class SingleBook extends React.Component{
 			displayUploadCopy: false,
 			copies:[],
 			addedCopy: null,
-			displayEditCopy: false 
+			displayEditCopy: false,
 		}
 	}
 
@@ -94,6 +94,20 @@ class SingleBook extends React.Component{
 		})
 	}
 
+
+	editCopy =(copy) => {
+		console.log(copy);
+		this.displayEditCopy()
+		this.setState({
+			copyToEdit: copy
+		})
+	}
+
+	updateEditCopy= async (data) => {
+		
+	}
+
+
 	displayEditCopy = () => {
 		this.setState({
 			displayEditCopy: this.state.displayEditCopy ? false : true 
@@ -101,6 +115,7 @@ class SingleBook extends React.Component{
 	}
 
 	render(){	
+		console.log(this.state);
 		return(
 			<div>
 				<Grid>
@@ -116,10 +131,10 @@ class SingleBook extends React.Component{
 					</Grid.Column>
 						
 					<Grid.Column width={5} align='middle'>
-						<CopyList deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} displayEditCopy={this.displayEditCopy} copies={this.state.copies}/>
+						<CopyList deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} editCopy={this.editCopy} copies={this.state.copies}/>
 					</Grid.Column>
 				</Grid>
-				{this.state.displayEditCopy ? <EditCopy displayEditCopy={this.displayEditCopy}/> :null}
+				{this.state.displayEditCopy ? <EditCopy updateEditCopy={this.updateEditCopy} copyToEdit={this.state.copyToEdit} displayEditCopy={this.displayEditCopy}/> :null}
 				{this.state.displayUploadCopy ? <CreateCopy displayCreateCopy={this.displayCreateCopy} addCopy={this.addCopy} /> : null}
 			</div>
 		)
