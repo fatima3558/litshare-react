@@ -30,7 +30,7 @@ class UserInfoContainer extends React.Component {
 						<p>{this.props.user.zipcode}</p>
 					</div>
 				}
-				<button onClick={this.toggleEdit}>{this.state.editing ? "Cancel" : "Edit Info"}</button>
+				<button onClick={this.toggleEdit}>{this.state.editing ? "Done" : "Edit Info"}</button>
 			</div>
 		)
 	}

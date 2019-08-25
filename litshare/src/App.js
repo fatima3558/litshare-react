@@ -52,9 +52,10 @@ class App extends Component {
     }
   }
 
-  getUserInfo = async () => {
-    //method after books component renders to get user info and set login
-        console.log("getting user info here");
+  updateLoggedInUser = (user) => {
+    this.setState({
+      loggedInUser: user
+    })
   }
   
   render() {
@@ -72,6 +73,7 @@ class App extends Component {
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
                   user={this.state.loggedInUser}
+                  updateLoggedInUser={this.updateLoggedInUser}
                 /> 
               } 
             />
