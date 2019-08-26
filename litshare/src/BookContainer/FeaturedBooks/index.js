@@ -11,8 +11,16 @@ function FeaturedBooks (props){
 	// console.log(length);
 	if(booksLength <= 3){
 		bookArr = props.books
-	} else if(booksLength > 3) {	
-		bookArr = [props.books[randomNum(booksLength)],props.books[randomNum(booksLength)],props.books[randomNum(booksLength)]]
+	} else if(booksLength > 3) {
+		let numArr = []
+		let num
+		while(numArr.length < 4){
+			num = randomNum(booksLength)
+			if(numArr.indexOf(num) === -1){
+				numArr.push(num)
+			}	
+		}
+		bookArr = [props.books[numArr[0]],props.books[numArr[1]],props.books[numArr[2]]]
 	}
 
 	const find3Books = bookArr.map((book,i) => {
