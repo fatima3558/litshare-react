@@ -1,5 +1,19 @@
 body {
+  margin-top: 20px;
+  margin-left:20px;
+  margin-right: 20px;
   background-color: #21295C;
+  height: 100%;
+}
+
+.Users-container{
+  height: 100%;
+}
+
+.Footer {
+  margin-top: 40px;
+  /*position: absolute;*/
+  /*margin-bottom: 0px;*/
 }
 
 h1 {

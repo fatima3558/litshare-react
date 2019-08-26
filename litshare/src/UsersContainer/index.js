@@ -29,7 +29,7 @@ class UsersContainer extends Component {
 	// 	console.log("this is statein UsersContainer below:");
 	// 	console.log(this.state);
 		return(
-			<div>
+			<div className='Users-container'>
 				<div>
 					{this.props.loggedIn ? 
 						<div>

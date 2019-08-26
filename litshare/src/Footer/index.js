@@ -3,7 +3,7 @@ import { Grid, Sticky } from 'semantic-ui-react'
 
 function Footer(props){
 	return(
-		<Sticky>
+		<Sticky className='Footer'>
 			<Grid attached='bottom'>
 				<Grid.Column width={6} align='middle'>
 					{props.loggedIn ? 

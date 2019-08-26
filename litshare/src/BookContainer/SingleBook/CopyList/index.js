@@ -14,6 +14,7 @@ class CopyList extends React.Component{
 	}
 
 	render(){
+		console.log(this.props,"<-----props in copy list");
 		const singlecopy = this.props.copies.map(copy => {
 			return (
 				<Grid.Row key={copy.id} align='middle'>
