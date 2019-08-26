@@ -64,7 +64,6 @@ class BookContainer extends React.Component{
 			keyword: null
 		})
 
-
 	}
 
 	uploadBook = async (data) => {
@@ -117,7 +116,7 @@ class BookContainer extends React.Component{
   	}
   	
 	render(){
-		// console.log(this.state,"<-----state in the boookcontainer");
+		console.log(this.state,"<-----state in the boookcontainer");
 		return(
 			<main>
 				<Header {...this.props} findBooksWithKeyword={this.findBooksWithKeyword}/>

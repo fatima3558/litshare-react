@@ -28,13 +28,12 @@ class CreateBook extends React.Component{
 			if(data.status.message === "success"){
 	          // this.props.history.push('/books')
 	          // console.log(data.data);
+				this.props.displayOneBook(data.data.id)
 	          	console.log('success????');
 	        } else {
 	          console.log(data, ' unsuccessful')
 	        }
 		})
-
-
 		this.props.toggleUpload()
 		this.setState({
 			title: '',

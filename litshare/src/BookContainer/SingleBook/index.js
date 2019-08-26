@@ -148,13 +148,12 @@ class SingleBook extends React.Component{
 						<Image size='medium' src={this.props.book.URL} />
 					</Grid.Column>
 
-					<Grid.Column width={5} align='middle'>
+					<Grid.Column width={5} align='left'>
 						<h1>{this.props.book.title}</h1><br/><br/>
-						Author: <p>{this.props.book.author}</p><br/><br/>
-						Summary: <p>{this.props.book.summary}</p><br/><br/><br/><br/>
+						<p> Author: {this.props.book.author.toUpperCase()}</p><br/>
+						<p> Summary: {this.props.book.summary.toUpperCase()}</p><br/><br/><br/>
 						<a onClick={this.displayCreateCopy}> Add a copy</a> 
 					</Grid.Column>
-						
 					<Grid.Column width={5} align='middle'>
 						<CopyList {...this.props} displayUser={this.props.displayUser} deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} editCopy={this.editCopy} copies={this.state.copies}/>
 					</Grid.Column>

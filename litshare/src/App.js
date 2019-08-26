@@ -66,7 +66,7 @@ class App extends Component {
     this.setState({
       displayUpload: this.state.displayUpload ? false : true,
       keyword:null,
-      oneBook: null
+      // oneBook: null
     })
   }
   
