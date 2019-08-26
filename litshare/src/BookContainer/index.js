@@ -19,6 +19,7 @@ class BookContainer extends React.Component{
 			keyword:'',
 			oneBook: null,
 			currentBook: null,
+			displayUpload: false 
 		}
 	}
 
@@ -120,7 +121,7 @@ class BookContainer extends React.Component{
 		return(
 			<main>
 				<Header {...this.props} findBooksWithKeyword={this.findBooksWithKeyword}/>
-				<br/><br/><br/>
+				<br/><br/>
 
 				{!this.state.keyword && !this.state.oneBook ? <FeaturedBooks displayOneBook={this.displayOneBook} books={this.state.books}/> : null}
 				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
@@ -128,7 +129,7 @@ class BookContainer extends React.Component{
 				<br/><br/><br/>
 				{this.state.oneBook && !this.state.keyword? <SingleBook {...this.props} displayUser={this.props.displayUser} book={this.state.oneBook}/>: null}
 				
-				{this.props.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
+				{this.props.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.props.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
 			</main>
 		)
