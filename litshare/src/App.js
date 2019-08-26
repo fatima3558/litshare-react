@@ -12,7 +12,10 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: 'Guest',
-      loggedInUser: {}
+      loggedInUser: {},
+      displayUpload: false,
+      keyword: '',
+
     }
   }
 
@@ -57,6 +60,14 @@ class App extends Component {
       loggedInUser: user
     })
   }
+
+  toggleUpload = () => {
+    this.setState({
+      displayUpload: this.state.displayUpload ? false : true,
+      keyword:null,
+      oneBook: null
+    })
+  }
   
   render() {
     console.log("state in app.js below:");
@@ -84,12 +95,16 @@ class App extends Component {
                   loggedIn={this.state.loggedIn}
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
+                  displayUpload={this.state.displayUpload}
                 /> 
               }
             />
           </Switch>
         </main>
-      
+        <Footer 
+          toggleUpload={this.toggleUpload}
+          loggedIn={this.state.loggedIn}
+        />
       </div>
     )
   }
