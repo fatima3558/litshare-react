@@ -1,5 +1,6 @@
 import React from 'react';
 import UserInfoEditContainer from './UserInfoEditContainer';
+import Header from '../Header'
 
 class UserInfoContainer extends React.Component {
 	constructor() {
@@ -35,7 +36,8 @@ class UserInfoContainer extends React.Component {
 	render() {
 		return(
 			<div>
-				{this.state.editing ? 
+				<Header {...this.props}/>
+				{this.state.editing ?
 					<UserInfoEditContainer {...this.props}/> :
 					<div>
 						<h1>{this.props.username}'s Account Information</h1>
