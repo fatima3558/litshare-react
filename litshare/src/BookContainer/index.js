@@ -1,13 +1,12 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom' 
 import { } from 'semantic-ui-react'
-import FeaturedBooks from '../FeaturedBooks'
-import Header from '../Header'
-import SearchBooks from '../SearchBooks'
+import FeaturedBooks from './FeaturedBooks'
+import Header from './Header'
+import SearchBooks from './SearchBooks'
 import Footer from '../Footer'
-import SingleBook from '../SingleBook'
-import CreateBook from '../CreateBook'
-import CreateCopy from '../CreateCopy'
+import SingleBook from './SingleBook'
+import CreateBook from './CreateBook'
 
 
 
@@ -19,10 +18,7 @@ class BookContainer extends React.Component{
 			keywordbooks:[],
 			keyword:'',
 			oneBook: null,
-			displayUpload: false,
 			currentBook: null,
-			displayUploadCopy: false,
-			copies:[]
 		}
 	}
 
@@ -118,54 +114,7 @@ class BookContainer extends React.Component{
       		return err 
     	}
   	}
-
-  	toggleUpload = () => {
-  		this.setState({
-  			displayUpload: this.state.displayUpload ? false : true,
-  			oneBook: null,
-  			keyword:null
-  		})
-  	}
-
-
-  	displayCreateCopy = (book) => {
-  		console.log(book, "bookid in book container lifted up with createcopu");
-  		this.setState({
-  			currentBook: book,
-  			displayUploadCopy: this.state.displayUploadCopy ? false : true 
-  		})
-  		// here should be able to toggle the form Createcopy and setbookid in the state
-  	}
-
-
-  	addCopy = async (data) => {
-  		console.log("DATA SENT TO BACKEND FOR ADDCOPY:")
-  		console.log(data)
-
-  		try{
-  			const url = `http://localhost:8000/books/${this.state.currentBook.id}/copy`
-  			console.log(url);
-			const uploadCopyResponse = await fetch(url,{
-				method:'POST',
-				credentials: 'include',
-				body: JSON.stringify(data),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})	
-			// console.log(uploadCopyResponse,"<------upload book response");
-			const parsedResponse = await uploadCopyResponse.json()
-			// console.log(parsedResponse,"<-----parsedresponse in uploadbook");
-			this.setState({
-				copies:[...this.state.copies, parsedResponse.data]
-			})
-			return parsedResponse
-		}catch(err){
-			console.log(err)
-			return err
-		}
-  	}
-
+  	
 	render(){
 		// console.log(this.state,"<-----state in the boookcontainer");
 		return(
@@ -177,16 +126,10 @@ class BookContainer extends React.Component{
 				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 
 				<br/><br/><br/>
-				{this.state.oneBook && !this.state.keyword? <SingleBook displayCreateCopy={this.displayCreateCopy} book={this.state.oneBook}/>: null}
+				{this.state.oneBook && !this.state.keyword? <SingleBook book={this.state.oneBook}/>: null}
 				
-				{this.state.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
+				{this.props.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
-
-				{this.state.displayUploadCopy ? <CreateCopy displayCreateCopy={this.displayCreateCopy} addCopy={this.addCopy} currentBook={this.state.currentBook}/> : null}
-				<Footer toggleUpload={this.toggleUpload}/>
-
-				<br/><br/><br/>
-
 			</main>
 		)
 	}

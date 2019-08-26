@@ -13,7 +13,10 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: 'Guest',
-      loggedInUser: {}
+      loggedInUser: {},
+      displayUpload: false,
+      keyword: '',
+
     }
   }
 
@@ -53,9 +56,18 @@ class App extends Component {
     }
   }
 
-  getUserInfo = async () => {
-    //method after books component renders to get user info and set login
-        console.log("getting user info here");
+  updateLoggedInUser = (user) => {
+    this.setState({
+      loggedInUser: user
+    })
+  }
+
+  toggleUpload = () => {
+    this.setState({
+      displayUpload: this.state.displayUpload ? false : true,
+      keyword:null,
+      oneBook: null
+    })
   }
   
   render() {
@@ -73,6 +85,7 @@ class App extends Component {
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
                   user={this.state.loggedInUser}
+                  updateLoggedInUser={this.updateLoggedInUser}
                 /> 
               } 
             />
@@ -83,13 +96,17 @@ class App extends Component {
                   loggedIn={this.state.loggedIn}
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
+                  displayUpload={this.state.displayUpload}
                 /> 
               }
             />
             <Route exact path='/requests' component={RequestsContainer} user={this.state.loggedInUser} />
           </Switch>
         </main>
-      
+        <Footer 
+          toggleUpload={this.toggleUpload}
+          loggedIn={this.state.loggedIn}
+        />
       </div>
     )
   }

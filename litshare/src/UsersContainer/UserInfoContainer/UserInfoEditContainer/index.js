@@ -20,9 +20,21 @@ class UserInfoEditContainer extends React.Component {
 	handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			console.log(this.props, "this is props in UserInfoEditContainer")
+			// console.log(this.props, "this is props in UserInfoEditContainer")
 			console.log(this.state);
-			// write database query to update user here
+			// console.log(this.props.user.id, "user's id");
+			const updatedUser = await fetch('http://localhost:8000/users/' + this.props.user.id + '/edit', {
+				credentials: 'include',
+				method: 'PUT',
+				body: JSON.stringify(this.state),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			const updatedUserResponse = await updatedUser.json()
+			console.log(updatedUserResponse, "updated user response");
+
+			this.props.updateLoggedInUser(updatedUserResponse.data)
 		} catch(err) {
 			console.log(err);
 		}
