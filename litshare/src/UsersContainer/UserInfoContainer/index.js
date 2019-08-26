@@ -1,6 +1,8 @@
 import React from 'react';
 import UserInfoEditContainer from './UserInfoEditContainer';
-import Header from '../Header'
+import Header from '../Header';
+import { Grid, Input, Button, Form } from 'semantic-ui-react'
+
 
 class UserInfoContainer extends React.Component {
 	constructor() {
@@ -40,7 +42,7 @@ class UserInfoContainer extends React.Component {
 				{this.state.editing ?
 					<UserInfoEditContainer {...this.props}/> :
 					<div>
-						<h1>{this.props.username}'s Account Information</h1>
+						<h1>{this.props.user.username}'s Account Information</h1>
 						<h4>Email:</h4><br/>
 						<p> {this.props.user.email}</p>
 						<h4>Bio:</h4> <br/>
@@ -49,9 +51,11 @@ class UserInfoContainer extends React.Component {
 						<p>{this.props.user.zipcode}</p>
 					</div>
 				}
-				<button onClick={this.toggleEdit}>{this.state.editing ? "Done" : "Edit Info"}</button>
-				<h4><span>Or </span></h4>
-				<button onClick={this.deleteUser}>Delete Your Account</button>
+				<Button onClick={this.toggleEdit}>{this.state.editing ? "Done" : "Edit Info"}</Button>
+				<br/>
+				<h4><span>Or</span></h4>
+				<br/>
+				<Button onClick={this.deleteUser}>Delete Your Account</Button>
 			</div>
 		)
 	}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid, Input, Button, Form, TextArea } from 'semantic-ui-react';
 
 class RegisterContainer extends Component {
 	constructor() {
@@ -62,53 +63,54 @@ class RegisterContainer extends Component {
 
 	render() {
 		return(
-			<form onSubmit={this.handleSubmit}>
+			<Form onSubmit={this.handleSubmit}>
 				<h2>Register</h2>
-				<input 
+				<Input 
 					type="text" 
 					name="username" 
 					placeholder="Username"
 					value={this.state.username}
 					onChange={this.handleChange}
 				>
-				</input>
+				</Input>
 				<br/>
-				<input 
+				<Input 
 					type="text" 
 					name="email" 
 					placeholder="Email"
 					value={this.state.email}
 					onChange={this.handleChange}
 				>
-				</input>
+				</Input>
 				<br/>
-				<input 
+				<Input 
 					type="password" 
 					name="password" 
 					placeholder="Password"
 					value={this.state.password}
 					onChange={this.handleChange}
 				>
-				</input>
+				</Input>
 				<br/>
-				<textarea 
+				<TextArea 
+					style={{maxWidth: 300}}
 					name="bio"
 					placeholder="Tell us about yourself!"
 					value={this.state.bio}
 					onChange={this.handleChange}
 				/>
 				<br/>
-				<input
+				<Input
 					type="text" 
 					name="zipcode" 
 					placeholder="Zip Code"
 					value={this.state.zipcode}
 					onChange={this.handleChange}
 				>
-				</input>
+				</Input>
 				<br/>
-				<button>Register</button>
-			</form>
+				<Button>Register</Button>
+			</Form>
 		)
 	}
 }

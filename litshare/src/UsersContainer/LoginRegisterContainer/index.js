@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
+import { Grid, Input, Button, Form } from 'semantic-ui-react';
 
 class LoginRegisterContainer extends Component {
 	constructor() {

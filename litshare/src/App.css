@@ -1,3 +1,32 @@
+body {
+  background-color: #21295C;
+}
+
+h1 {
+  color: #EEF4ED;
+}
+
+a, p, h2, h3, h4, h5, h6, form {
+  color: #EDCB96;
+}
+
+a {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+}
+
+h1, h2, h3, h4, h5, h6, form {
+  font-family: 'Shadows Into Light', cursive;
+}
+
+a, p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h4 {
+  display: inline-block;
+}
+
 .App {
   text-align: center;
 }

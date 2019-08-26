@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import LoginRegisterContainer from './LoginRegisterContainer';
-import UserInfoContainer from './UserInfoContainer'
+import UserInfoContainer from './UserInfoContainer';
+import { Button } from 'semantic-ui-react'
+
 
 class UsersContainer extends Component {
 	constructor() {
@@ -40,9 +42,9 @@ class UsersContainer extends Component {
 								{...this.props}
 								registered={this.state.registered}
 							/>
-							<button 
+							<Button 
 								onClick={this.toggleRegistered}>{this.state.registered ? "Need to Register?" : "Already Have an Account?" }
-							</button>
+							</Button>
 						</div>
 					}
 				</div>

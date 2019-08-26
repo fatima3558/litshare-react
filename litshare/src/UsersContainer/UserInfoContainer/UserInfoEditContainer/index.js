@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, Input, Button, Form, TextArea } from 'semantic-ui-react';
 
 class UserInfoEditContainer extends React.Component {
 	constructor(props) {
@@ -42,11 +43,11 @@ class UserInfoEditContainer extends React.Component {
 
 	render() {
 		return(
-			<form onSubmit={this.handleSubmit}>
+			<Form onSubmit={this.handleSubmit}>
 				<h1>{this.props.user.username}'s Account Information</h1>
 
 				<p>Name:</p><br/>
-				<input 
+				<Input 
 					type='text'
 					name='username'
 					value={this.state.username}
@@ -54,7 +55,7 @@ class UserInfoEditContainer extends React.Component {
 				/>
 
 				<p>Email:</p><br/>
-				<input 
+				<Input 
 					type='text'
 					name='email'
 					value={this.state.email}
@@ -62,21 +63,22 @@ class UserInfoEditContainer extends React.Component {
 				/>
 
 				<p>Bio:</p> <br/>
-				<textarea 
+				<TextArea
+					style={{maxWidth: 300}}
 					name='bio'
 					value={this.state.bio}
 					onChange={this.handleChange}
 				/>
 
 				<p>Zip Code:</p><br/>
-				<input 
+				<Input 
 					type='text'
 					name='zipcode'
 					value={this.props.user.zipcode}
 					onChange={this.handleChange}
 				/><br/>
-				<button>Submit</button>
-			</form>
+				<Button>Submit</Button>
+			</Form>
 		)
 	}
 }

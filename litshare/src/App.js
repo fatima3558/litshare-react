@@ -94,7 +94,7 @@ class App extends Component {
                 <BookContainer {...props}
                   loggedIn={this.state.loggedIn}
                   toggleLogin={this.toggleLogin}
-                  username={this.state.username}
+                  username={this.state.loggedInUser.username}
                   displayUpload={this.state.displayUpload}
                 /> 
               }

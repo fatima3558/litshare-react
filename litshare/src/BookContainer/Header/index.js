@@ -45,7 +45,7 @@ class Header extends React.Component{
 						{this.props.loggedIn ? 
 							<Grid.Column width={4} align='right'>
 								<a onClick={this.showUserInfo}>{this.props.username}</a><br/>
-								<button onClick={this.props.toggleLogin}>Log Out</button> 
+								<Button onClick={this.props.toggleLogin}>Log Out</Button> 
 							</Grid.Column> :
 							null
 						}
