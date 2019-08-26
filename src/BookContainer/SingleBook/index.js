@@ -23,7 +23,7 @@ class SingleBook extends React.Component{
 	}
 
 	getCopy = async () => {
-		const url = `http://localhost:8000/books/${this.props.book.id}/copy`
+		const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy`
 		const getCopiesResponse = await fetch(url,{
 			method: 'GET',
         	credentials: 'include'
@@ -43,7 +43,7 @@ class SingleBook extends React.Component{
   		console.log(data)
 
   		try{
-  			const url = `http://localhost:8000/books/${this.props.book.id}/copy`
+  			const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy`
   			console.log(url);
 			const uploadCopyResponse = await fetch(url,{
 				method:'POST',
@@ -81,7 +81,7 @@ class SingleBook extends React.Component{
 
   	deleteOneCopy = async (copyId) => {
 		console.log(copyId,"<-------should be the copyid!!!");
-		const url = `http://localhost:8000/books/${this.props.book.id}/copy/${copyId}`
+		const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy/${copyId}`
 		const deleteOneCopyResponse = await fetch(url, {
 			method: 'DELETE',
 			credentials: 'include'
@@ -105,7 +105,7 @@ class SingleBook extends React.Component{
 	}
 
 	updateEditCopy= async (data) => {
-		const url = `http://localhost:8000/books/${this.props.book.id}/copy/${this.state.copyToEdit.id}`
+		const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy/${this.state.copyToEdit.id}`
 		console.log(url,"<------url in updateEditCopy");
 		const editCopyResponse = await fetch(url,{
 			method:'PUT',
