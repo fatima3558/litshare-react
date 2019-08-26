@@ -156,7 +156,7 @@ class SingleBook extends React.Component{
 					</Grid.Column>
 						
 					<Grid.Column width={5} align='middle'>
-						<CopyList deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} editCopy={this.editCopy} copies={this.state.copies}/>
+						<CopyList {...this.props} displayUser={this.props.displayUser} deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} editCopy={this.editCopy} copies={this.state.copies}/>
 					</Grid.Column>
 				</Grid>
 				{this.state.displayEditCopy ? <EditCopy updateEditCopy={this.updateEditCopy} copyToEdit={this.state.copyToEdit} displayEditCopy={this.displayEditCopy}/> :null}

@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       username: 'Guest',
-      loggedInUser: {}
+      loggedInUser: {},
+      displayedUser:null
     }
   }
 
@@ -58,6 +59,13 @@ class App extends Component {
     })
   }
   
+  displayUser = (userId) => {
+    this.setState({
+      displayedUser: userId
+    })  
+  }
+
+
   render() {
     console.log("state in app.js below:");
     console.log(this.state);
@@ -69,6 +77,7 @@ class App extends Component {
               exact path='/users' 
               render={(props) => 
                 <UsersContainer {...props} 
+                  displayedUser={this.state.displayedUser}
                   loggedIn={this.state.loggedIn} 
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
@@ -81,6 +90,7 @@ class App extends Component {
               exact path='/books' 
               render={(props) =>
                 <BookContainer {...props}
+                  displayUser={this.displayUser}
                   loggedIn={this.state.loggedIn}
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
