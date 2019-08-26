@@ -116,7 +116,7 @@ class BookContainer extends React.Component{
   	}
   	
 	render(){
-		console.log(this.state,"<-----state in the boookcontainer");
+		console.log(this.props,"<-----props in the boookcontainer");
 		return(
 			<main>
 				<Header {...this.props} findBooksWithKeyword={this.findBooksWithKeyword}/>
