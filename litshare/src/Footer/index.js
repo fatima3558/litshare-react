@@ -5,15 +5,19 @@ function Footer(props){
 	return(
 		<Sticky className='Footer'>
 			<Grid attached='bottom'>
-				<Grid.Column width={8} align='left'>
+				<Grid.Column width={4} align='middle'>
 					{props.loggedIn ? 
 						<a onClick={props.toggleUpload.bind(null)}>Upload a Book</a> : 
 						<a href='/users'>Log In or Register</a>
 					}
 				</Grid.Column>
-				
-				<Grid.Column width={8} align='right'>
+
+				<Grid.Column width={8} align='middle'>
 					<p>© 2019 <i>LITSHARE</i> by Chris, Fatima, Yuzhu</p>
+				</Grid.Column>
+
+				<Grid.Column width={4} align='middle'>
+					<p>&hearts; &hearts; &hearts; &hearts; &hearts; &hearts; &hearts;</p>
 				</Grid.Column>
 			</Grid>
 		</Sticky>
