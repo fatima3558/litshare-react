@@ -38,7 +38,7 @@ class UserInfoContainer extends React.Component {
 	render() {
 		return(
 			<div>
-
+				<Header/>
 				{this.props.displayedUser 
 					? 
 					<div>
