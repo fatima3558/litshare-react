@@ -13,7 +13,7 @@ class LoginRegisterContainer extends Component {
 	render() {
 		return(
 			<div>
-				<h1>Welcome to Litshare!</h1>
+				<h1>Welcome to LITSHARE!</h1>
 				<h4>Share the Lit, Share the Love &hearts;</h4>
 				
 				<br/>

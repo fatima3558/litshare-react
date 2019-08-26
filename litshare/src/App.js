@@ -20,6 +20,16 @@ class App extends Component {
     }
   }
 
+  welcome = () => {
+    return(
+      <div>
+        <h1>Welcome to LITSHARE!</h1>
+        <h3>Click on the link below to log in: </h3>
+        <br/><br/><br/>
+      </div>
+    )
+  }
+
   toggleLogin = async (user) => {
     this.setState({
       loggedIn: !this.state.loggedIn
@@ -84,6 +94,10 @@ class App extends Component {
       <div className="App">
         <main>
           <Switch>
+            <Route
+              exact path='/'
+              render={this.welcome}
+            />
             <Route 
               exact path='/users' 
               render={(props) => 
