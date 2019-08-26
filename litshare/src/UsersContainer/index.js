@@ -35,6 +35,7 @@ class UsersContainer extends Component {
 						<div>
 							<UserInfoContainer 
 								{...this.props}
+								displayedUser={this.props.displayedUser}
 							/> 
 						</div> :
 						<div>

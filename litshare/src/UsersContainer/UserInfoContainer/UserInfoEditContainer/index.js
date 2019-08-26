@@ -43,42 +43,45 @@ class UserInfoEditContainer extends React.Component {
 
 	render() {
 		return(
-			<Form onSubmit={this.handleSubmit}>
-				<h1>{this.props.user.username}'s Account Information</h1>
+			<div>
+				<Form onSubmit={this.handleSubmit}>
+					<h1>{this.props.user.username}'s Account Information</h1>
 
-				<p>Name:</p><br/>
-				<Input 
-					type='text'
-					name='username'
-					value={this.state.username}
-					onChange={this.handleChange}
-				/>
+					<p>Name:</p><br/>
+					<Input 
+						type='text'
+						name='username'
+						value={this.state.username}
+						onChange={this.handleChange}
+					/>
 
-				<p>Email:</p><br/>
-				<Input 
-					type='text'
-					name='email'
-					value={this.state.email}
-					onChange={this.handleChange}
-				/>
+					<p>Email:</p><br/>
+					<Input 
+						type='text'
+						name='email'
+						value={this.state.email}
+						onChange={this.handleChange}
+					/>
 
-				<p>Bio:</p> <br/>
-				<TextArea
-					style={{maxWidth: 300}}
-					name='bio'
-					value={this.state.bio}
-					onChange={this.handleChange}
-				/>
+					<p>Bio:</p> <br/>
+					<TextArea
+						style={{maxWidth: 300}}
+						name='bio'
+						value={this.state.bio}
+						onChange={this.handleChange}
+					/>
 
-				<p>Zip Code:</p><br/>
-				<Input 
-					type='text'
-					name='zipcode'
-					value={this.props.user.zipcode}
-					onChange={this.handleChange}
-				/><br/>
-				<Button>Submit</Button>
-			</Form>
+					<p>Zip Code:</p><br/>
+					<Input 
+						type='text'
+						name='zipcode'
+						value={this.props.user.zipcode}
+						onChange={this.handleChange}
+					/><br/>
+					<Button>Submit</Button>
+				</Form>
+				<Button onClick={this.props.toggleEdit}>Back to Your Info</Button>
+			</div>
 		)
 	}
 }

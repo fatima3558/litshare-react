@@ -40,6 +40,7 @@ class RequestsContainer extends React.Component{
 	findSentRequests = async () => {
 		let parsedResponse
 			try {
+				
 				const findSentRequests = await fetch(`http://127.0.0.1:8000/requests/sent/${this.props.username}`, {
 					method: 'GET'
 				});
