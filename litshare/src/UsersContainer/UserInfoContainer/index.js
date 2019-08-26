@@ -1,5 +1,6 @@
 import React from 'react';
 import UserInfoEditContainer from './UserInfoEditContainer';
+import Header from '../Header'
 
 class UserInfoContainer extends React.Component {
 	constructor() {
@@ -35,6 +36,7 @@ class UserInfoContainer extends React.Component {
 	render() {
 		return(
 			<div>
+
 				{this.props.displayedUser 
 					? 
 					<div>

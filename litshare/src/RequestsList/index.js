@@ -20,7 +20,7 @@ const RequestsList = (props) => {
     return (
       <li key={ask.id}>
         <span>{ask.copy_id.book_id.title} by {ask.copy_id.book_id.author}</span><br/>
-        <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span><br/>
+        <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span> <button>Approve</button><button>Deny</button>
       </li>
 
       )

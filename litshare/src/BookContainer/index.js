@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom' 
 import { } from 'semantic-ui-react'
 import FeaturedBooks from './FeaturedBooks'
-import Header from '../Header'
+import Header from './Header'
 import SearchBooks from './SearchBooks'
 import Footer from '../Footer'
 import SingleBook from './SingleBook'
@@ -18,7 +18,6 @@ class BookContainer extends React.Component{
 			keywordbooks:[],
 			keyword:'',
 			oneBook: null,
-			displayUpload: false,
 			currentBook: null,
 		}
 	}
@@ -115,16 +114,6 @@ class BookContainer extends React.Component{
       		return err 
     	}
   	}
-
-  	toggleUpload = () => {
-  		this.setState({
-  			displayUpload: this.state.displayUpload ? false : true,
-  			keyword:null,
-  			oneBook: null
-  		})
-  	}
-
-
   	
 	render(){
 		// console.log(this.state,"<-----state in the boookcontainer");
@@ -139,14 +128,8 @@ class BookContainer extends React.Component{
 				<br/><br/><br/>
 				{this.state.oneBook && !this.state.keyword? <SingleBook {...this.props} displayUser={this.props.displayUser} book={this.state.oneBook}/>: null}
 				
-				{this.state.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
+				{this.props.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
-
-
-				<Footer toggleUpload={this.toggleUpload}/>
-
-				<br/><br/><br/>
-
 			</main>
 		)
 	}

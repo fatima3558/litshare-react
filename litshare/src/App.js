@@ -3,8 +3,9 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom' 
 import UsersContainer from './UsersContainer';
 import BookContainer from './BookContainer';
-import Header from './Header';
+// import Header from './Header';
 import Footer from './Footer';
+import RequestsContainer from './RequestsContainer'
 
 class App extends Component {
   constructor() {
@@ -13,7 +14,9 @@ class App extends Component {
       loggedIn: false,
       username: 'Guest',
       loggedInUser: {},
-      displayedUser:null
+      displayedUser:null,
+      displayUpload: false,
+      keyword: '',
     }
   }
 
@@ -58,6 +61,14 @@ class App extends Component {
       loggedInUser: user
     })
   }
+
+  toggleUpload = () => {
+    this.setState({
+      displayUpload: this.state.displayUpload ? false : true,
+      keyword:null,
+      oneBook: null
+    })
+  }
   
   displayUser = (userId) => {
     this.setState({
@@ -94,12 +105,17 @@ class App extends Component {
                   loggedIn={this.state.loggedIn}
                   toggleLogin={this.toggleLogin}
                   username={this.state.username}
+                  displayUpload={this.state.displayUpload}
                 /> 
               }
             />
+            <Route exact path='/requests' component={RequestsContainer} user={this.state.loggedInUser} />
           </Switch>
         </main>
-      
+        <Footer 
+          toggleUpload={this.toggleUpload}
+          loggedIn={this.state.loggedIn}
+        />
       </div>
     )
   }
