@@ -101,6 +101,7 @@ class App extends Component {
               exact path='/books' 
               render={(props) =>
                 <BookContainer {...props}
+                  toggleUpload={this.toggleUpload}
                   displayUser={this.displayUser}
                   loggedIn={this.state.loggedIn}
                   toggleLogin={this.toggleLogin}
