@@ -16,11 +16,20 @@ const RequestsList = (props) => {
       </li>
 
       )
-  } else if (props.type == 'received') {
+  } else if ((props.type == 'received') && (ask.approval_granted == null)) {
     return (
       <li key={ask.id}>
         <span>{ask.copy_id.book_id.title} by {ask.copy_id.book_id.author}</span><br/>
-        <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span> <button>Approve</button><button>Deny</button>
+        <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span> 
+        <button onClick={props.updateRequestApprove.bind(null, ask.copy_id.id)}>Approve</button><button onClick={props.updateRequestDeny.bind(null, ask.copy_id.id)}>Deny</button>
+      </li>
+
+      )
+  } else if ((props.type == 'received') && (ask.approval_granted == true || ask.approval_granted == false)) {
+    return (
+      <li key={ask.id}>
+        <span>{ask.copy_id.book_id.title} by {ask.copy_id.book_id.author}</span><br/>
+        <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span> 
       </li>
 
       )

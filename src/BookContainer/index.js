@@ -7,6 +7,7 @@ import SearchBooks from './SearchBooks'
 import Footer from '../Footer'
 import SingleBook from './SingleBook'
 import CreateBook from './CreateBook'
+import RequestsContainer from'../RequestsContainer'
 
 
 
@@ -131,6 +132,7 @@ class BookContainer extends React.Component{
 				
 				{this.props.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.props.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
+				{this.props.loggedIn ? <RequestsContainer loggedIn={this.state.loggedIn} user={this.props.user } /> : null }
 			</main>
 		)
 	}

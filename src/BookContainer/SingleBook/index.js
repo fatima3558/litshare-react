@@ -132,6 +132,27 @@ class SingleBook extends React.Component{
 		})
 	}
 
+	createRequestForBook = async (copyid, ownerid, borrowerid) => {
+		console.log(this.props.user);
+		console.log("*** Create Request ***", copyid, ownerid, borrowerid);
+
+		const requestBody = JSON.stringify({copy_id: copyid, owner_id: ownerid, borrower_id: borrowerid.id})
+		console.log("Here is the body of the request we're about to send in createRequestForBook() in SingleBook");
+		console.log(requestBody);
+		const createdResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/`, {
+			method: 'POST',
+			credentials: 'include',
+			body: requestBody,
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		console.log(createdResponse);
+		const parsed = await createdResponse.json()
+		console.log(parsed);
+		
+	}
+
 
 	displayEditCopy = () => {
 		this.setState({
@@ -155,7 +176,7 @@ class SingleBook extends React.Component{
 						<a onClick={this.displayCreateCopy}> Add a copy</a> 
 					</Grid.Column>
 					<Grid.Column width={5} align='middle'>
-						<CopyList {...this.props} displayUser={this.props.displayUser} deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} editCopy={this.editCopy} username={this.props.username} copies={this.state.copies}/>
+						<CopyList {...this.props} displayUser={this.props.displayUser} deleteOneCopy={this.deleteOneCopy} addedCopy={this.props.addedCopy} editCopy={this.editCopy} username={this.props.username} copies={this.state.copies} createRequestForBook={this.createRequestForBook} user={this.props.user}/>
 					</Grid.Column>
 				</Grid>
 				{this.state.displayEditCopy ? <EditCopy updateEditCopy={this.updateEditCopy} copyToEdit={this.state.copyToEdit} displayEditCopy={this.displayEditCopy}/> :null}

@@ -10,7 +10,7 @@ class RequestsContainer extends React.Component{
 		super()
 		this.state={
 			requests: [],
-			requestType: 'all'
+			requestType: ''
 		}
 	}
 
@@ -21,7 +21,7 @@ class RequestsContainer extends React.Component{
 
 	findAllRequests = async () => {
 			try {
-				const findAllRequests = await fetch(`http://127.0.0.1:8000/requests/${this.props.user.id}`, {
+				const findAllRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/${this.props.user.id}`, {
 					method: 'GET',
 
 				});
@@ -39,7 +39,7 @@ class RequestsContainer extends React.Component{
 	findSentRequests = async () => {
 			try {
 				
-				const findSentRequests = await fetch(`http://127.0.0.1:8000/requests/sent/${this.props.user.id}`, {
+				const findSentRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/sent/${this.props.user.id}`, {
 					method: 'GET'
 				});
 				const parsedResponse = await findSentRequests.json();
@@ -55,7 +55,7 @@ class RequestsContainer extends React.Component{
 
 	findReceivedRequests = async () => {
 			try {
-				const findReceivedRequests = await fetch(`http://127.0.0.1:8000/requests/received/${this.props.user.id}`, {
+				const findReceivedRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/received/${this.props.user.id}`, {
 					method: 'GET'
 				});
 				const parsedResponse = await findReceivedRequests.json();
@@ -68,11 +68,10 @@ class RequestsContainer extends React.Component{
 			}
 		}
 
-	updateRequestApprove = async (askid) => {
-		console.log("*** updateRequestApprove askid ***", askid);
+	updateRequestApprove = async (ask_id) => {
 		try{
-			const requestBody = JSON.stringify({approval_granted: true})
-			const updateResponse = await fetch(`http://127.0.0.1:8000/requests/${askid}`, {
+			const requestBody = JSON.stringify({"approval_granted": true})
+			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/approval/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
 				body: requestBody,
@@ -83,6 +82,19 @@ class RequestsContainer extends React.Component{
 			const parsed = await updateResponse.json()
 			console.log(parsed);
 
+			const loanRequestBody = JSON.stringify({ask_id: ask_id})
+			const createdLoan = await fetch(`${process.env.REACT_APP_API_URL}/loan/`, {
+				method: 'POST',
+				credentials: 'include',
+				body: loanRequestBody,
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			console.log(createdLoan);
+			const parsedLoan = await createdLoan.json()
+			console.log(parsedLoan);
+
 			
 
 		} catch(err) {
@@ -92,10 +104,10 @@ class RequestsContainer extends React.Component{
 
 	}
 
-	updateRequestDeny = async (askid) => {
+	updateRequestDeny = async (ask_id) => {
 		try{
-			const requestBody = JSON.stringify({approval_granted: false})
-			const updateResponse = await fetch(`http://127.0.0.1:8000/requests/${askid}`, {
+			const requestBody = JSON.stringify({"approval_granted": false})
+			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/approval/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
 				body: requestBody,
