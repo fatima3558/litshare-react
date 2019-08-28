@@ -20,7 +20,7 @@ class UserInfoContainer extends React.Component {
 
 	deleteUser = async (e) => {
 		try {
-			const deletedUser = await fetch('http://localhost:8000/users/' + this.props.user.id, {
+			const deletedUser = await fetch(`${process.env.REACT_APP_API_URL}/users/` + this.props.user.id, {
 				credentials: 'include',
 				method: 'delete'
 			})

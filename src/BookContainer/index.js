@@ -19,7 +19,7 @@ class BookContainer extends React.Component{
 			keyword:'',
 			oneBook: null,
 			currentBook: null,
-			displayUpload: false 
+			displayUpload: false,
 		}
 	}
 
@@ -31,7 +31,7 @@ class BookContainer extends React.Component{
 	findAllBooks= async () =>{
 		//this will find all the books for the archive link in the footer
 		try{
-			const findAllBooksResponse = await fetch('http://localhost:8000/books/',{
+			const findAllBooksResponse = await fetch(`${process.env.REACT_APP_API_URL}/books/`,{
 				method: 'GET',
 				credentials: 'include'
 			})
@@ -51,7 +51,7 @@ class BookContainer extends React.Component{
 
 
 	displayOneBook = async (bookId) => {
-		const findOneBookResponse = await fetch(`http://localhost:8000/books/${bookId}`,{
+		const findOneBookResponse = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}`,{
 			method: 'GET',
 			credentials: 'include'
 		})
@@ -64,11 +64,12 @@ class BookContainer extends React.Component{
 			keyword: null
 		})
 
+
 	}
 
 	uploadBook = async (data) => {
 		try{
-			const uploadBookResponse = await fetch('http://localhost:8000/books/',{
+			const uploadBookResponse = await fetch(`${process.env.REACT_APP_API_URL}/books/`,{
 				method:'POST',
 				credentials: 'include',
 				body: JSON.stringify(data),
@@ -92,7 +93,7 @@ class BookContainer extends React.Component{
 
 	findBooksWithKeyword= async (keyword) => {
     	try{
-    		const url = `http://localhost:8000/books/results?keyword=${keyword}`
+    		const url = `${process.env.REACT_APP_API_URL}/books/results?keyword=${keyword}`
     		// console.log("searching url:");
     		// console.log(url);	
       		const findBooksWithKeywordResponse = await fetch(url, { 
@@ -116,7 +117,7 @@ class BookContainer extends React.Component{
   	}
   	
 	render(){
-		console.log(this.props,"<-----props in the boookcontainer");
+		// console.log(this.state,"<-----state in the boookcontainer");
 		return(
 			<main>
 				<Header {...this.props} findBooksWithKeyword={this.findBooksWithKeyword}/>
@@ -126,7 +127,7 @@ class BookContainer extends React.Component{
 				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 
 				<br/><br/><br/>
-				{this.state.oneBook && !this.state.keyword? <SingleBook {...this.props} displayUser={this.props.displayUser} book={this.state.oneBook}/>: null}
+				{this.state.oneBook && !this.state.keyword? <SingleBook {...this.props} displayUser={this.props.displayUser} book={this.state.oneBook} username={this.props.username}/>: null}
 				
 				{this.props.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.props.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>

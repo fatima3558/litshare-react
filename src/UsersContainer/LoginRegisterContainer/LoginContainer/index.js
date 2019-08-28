@@ -24,7 +24,7 @@ class LoginContainer extends Component {
 			data.append('email', this.state.email)
 			data.append('password', this.state.password)
 			// query the database
-			const login = await fetch('http://localhost:8000/users/login', {
+			const login = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
 				credentials: 'include',
 				method: 'POST',
 				body: data,

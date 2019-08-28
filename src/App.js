@@ -45,7 +45,7 @@ class App extends Component {
         // query database to logout
         console.log("things before api call to log out");
         try {
-          await fetch('http://localhost:8000/users/logout', {
+          await fetch(`${process.env.REACT_APP_API_URL}/users/logout`, {
             method: 'GET',
             credentials: 'include',
             headers: {

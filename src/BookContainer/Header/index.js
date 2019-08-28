@@ -29,6 +29,7 @@ class Header extends React.Component{
 		this.props.history.push('/users')
 	}
 
+
 	render(){
 		// console.log(this.state);	
 		return (
@@ -40,7 +41,7 @@ class Header extends React.Component{
 						</Form>
 					</Grid.Column>
 					<Grid.Column width={8}>
-						<h1 align='middle'> LITSHARE </h1>
+						<h1 align='middle'> LITSHARE</h1>
 					</Grid.Column>
 						{this.props.loggedIn ? 
 							<Grid.Column width={4} align='right'>

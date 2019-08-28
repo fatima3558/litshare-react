@@ -24,7 +24,7 @@ class UserInfoEditContainer extends React.Component {
 			// console.log(this.props, "this is props in UserInfoEditContainer")
 			console.log(this.state);
 			// console.log(this.props.user.id, "user's id");
-			const updatedUser = await fetch('http://localhost:8000/users/' + this.props.user.id + '/edit', {
+			const updatedUser = await fetch(`${process.env.REACT_APP_API_URL}/users/` + this.props.user.id + '/edit', {
 				credentials: 'include',
 				method: 'PUT',
 				body: JSON.stringify(this.state),
