@@ -124,7 +124,20 @@ class App extends Component {
                 /> 
               }
             />
-            <Route exact path='/requests' component={RequestsContainer} user={this.state.loggedInUser} />
+            <Route 
+              exact path='/requests'
+              render={(props) => 
+                <RequestsContainer {...props}
+                toggleUpload={this.toggleUpload}
+                displayUser={this.displayUser}
+                loggedIn={this.state.loggedIn}
+                toggleLogin={this.toggleLogin}
+                username={this.state.loggedInUser.username}
+                displayUpload={this.state.displayUpload}
+                user={this.state.loggedInUser}
+              />
+            }
+            />
           </Switch>
         </main>
         <Footer 

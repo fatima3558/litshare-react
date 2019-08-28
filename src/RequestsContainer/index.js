@@ -1,7 +1,7 @@
 import React from 'react'
-// import { Route, Switch } from 'react-router-dom'
-// import Header from '../Header'
-// import SearchBooks from '../SearchBooks'
+import { Route, Switch } from 'react-router-dom'
+import Header from '../BookContainer/Header'
+import SearchBooks from '../BookContainer/SearchBooks'
 import RequestsList from '../RequestsList'
 
 
@@ -15,17 +15,17 @@ class RequestsContainer extends React.Component{
 	}
 
 	componentDidMount(){
+		console.log("*** Props for Request Container ***", this.props);
 		this.findAllRequests()
 	}
 
 	findAllRequests = async () => {
-		let parsedResponse
 			try {
-				const findAllRequests = await fetch('http://127.0.0.1:8000/requests/', {
+				const findAllRequests = await fetch(`http://127.0.0.1:8000/requests/${this.props.user.id}`, {
 					method: 'GET',
 
 				});
-				parsedResponse = await findAllRequests.json();
+				const parsedResponse = await findAllRequests.json();
 				// console.log("*** Parsed Response (findAllRequests) ***", parsedResponse);
 				this.setState({
 					requests:[... parsedResponse.data]
@@ -34,17 +34,15 @@ class RequestsContainer extends React.Component{
 				console.log(err);
 				return err
 			}
-			console.log("*** Parsed Response (findAllRequests) ***", parsedResponse);
 		}
 
 	findSentRequests = async () => {
-		let parsedResponse
 			try {
 				
-				const findSentRequests = await fetch(`http://127.0.0.1:8000/requests/sent/${this.props.username}`, {
+				const findSentRequests = await fetch(`http://127.0.0.1:8000/requests/sent/${this.props.user.id}`, {
 					method: 'GET'
 				});
-				parsedResponse = await findSentRequests.json();
+				const parsedResponse = await findSentRequests.json();
 				// console.log("*** Parsed Response (findSentRequests) ***", parsedResponse);
 				this.setState({
 					requests:[... parsedResponse.data]
@@ -53,16 +51,14 @@ class RequestsContainer extends React.Component{
 				console.log(err);
 				return err
 			}
-			console.log("*** Parsed Response (findSentRequests) ***", parsedResponse);
 		}
 
 	findReceivedRequests = async () => {
-			let parsedResponse
 			try {
-				const findReceivedRequests = await fetch(`http://127.0.0.1:8000/requests/received/${this.props.username}`, {
+				const findReceivedRequests = await fetch(`http://127.0.0.1:8000/requests/received/${this.props.user.id}`, {
 					method: 'GET'
 				});
-				parsedResponse = await findReceivedRequests.json();
+				const parsedResponse = await findReceivedRequests.json();
 				this.setState({
 					requests:[...parsedResponse.data]
 				})
@@ -70,8 +66,53 @@ class RequestsContainer extends React.Component{
 				console.log(err);
 				return err
 			}
-			console.log("*** Parsed Response (findReceivedRequests) ***", parsedResponse);
 		}
+
+	updateRequestApprove = async (askid) => {
+		console.log("*** updateRequestApprove askid ***", askid);
+		try{
+			const requestBody = JSON.stringify({approval_granted: true})
+			const updateResponse = await fetch(`http://127.0.0.1:8000/requests/${askid}`, {
+				method: 'PUT',
+				credentials: 'include',
+				body: requestBody,
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			const parsed = await updateResponse.json()
+			console.log(parsed);
+
+			
+
+		} catch(err) {
+			console.log(err);
+			return err
+		}
+
+	}
+
+	updateRequestDeny = async (askid) => {
+		try{
+			const requestBody = JSON.stringify({approval_granted: false})
+			const updateResponse = await fetch(`http://127.0.0.1:8000/requests/${askid}`, {
+				method: 'PUT',
+				credentials: 'include',
+				body: requestBody,
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			const parsed = await updateResponse.json()
+			console.log(parsed);
+
+
+		} catch(err) {
+			console.log(err);
+			return err
+		}
+
+	}
 
 	handleOptionChange = changeEvent => {
 		this.setState({
@@ -127,7 +168,7 @@ class RequestsContainer extends React.Component{
 					</fieldset>
 					
 				</form>
-				<RequestsList requests={this.state.requests} type={this.state.requestType} />
+				<RequestsList requests={this.state.requests} type={this.state.requestType} updateRequestApprove={this.updateRequestApprove} updateRequestDeny={this.updateRequestDeny}/>
 				
 				
 				
