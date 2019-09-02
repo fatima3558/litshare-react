@@ -136,20 +136,20 @@ class SingleBook extends React.Component{
 		// console.log(this.props.user);
 		console.log("*** Create Request ***", copyid, ownerid, this.props.user.id);
 
-		// const requestBody = JSON.stringify({copy_id: copyid, owner_id: ownerid, borrower_id: borrowerid.id})
+		const requestBody = {copy_id: copyid, owner_id: ownerid, borrower_id: this.props.user.id}
 		// console.log("Here is the body of the request we're about to send in createRequestForBook() in SingleBook");
 		// console.log(requestBody);
-		// const createdResponse = await fetch(`http://localhost:8000/requests/`, {
-		// 	method: 'POST',
-		// 	credentials: 'include',
-		// 	body: requestBody,
-		// 	headers: {
-		// 		'Content-Type': 'application/json'
-		// 	}
-		// })
-		// console.log(createdResponse);
-		// const parsed = await createdResponse.json()
-		// console.log(parsed);
+		const createdResponse = await fetch(`http://localhost:8000/requests/`, {
+			method: 'POST',
+			credentials: 'include',
+			body: JSON.stringify(requestBody),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		console.log(createdResponse,'<---------create request response ');
+		const parsed = await createdResponse.json()
+		console.log(parsed,"<====== parsed response requesr");
 		
 	}
 
