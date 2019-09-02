@@ -32,7 +32,7 @@ class BookContainer extends React.Component{
 	findAllBooks= async () =>{
 		//this will find all the books for the archive link in the footer
 		try{
-			const findAllBooksResponse = await fetch(`${process.env.REACT_APP_API_URL}/books/`,{
+			const findAllBooksResponse = await fetch(`http://localhost:8000/books/`,{
 				method: 'GET',
 				credentials: 'include'
 			})
@@ -52,7 +52,7 @@ class BookContainer extends React.Component{
 
 
 	displayOneBook = async (bookId) => {
-		const findOneBookResponse = await fetch(`${process.env.REACT_APP_API_URL}/books/${bookId}`,{
+		const findOneBookResponse = await fetch(`http://localhost:8000/books/${bookId}`,{
 			method: 'GET',
 			credentials: 'include'
 		})
@@ -70,7 +70,7 @@ class BookContainer extends React.Component{
 
 	uploadBook = async (data) => {
 		try{
-			const uploadBookResponse = await fetch(`${process.env.REACT_APP_API_URL}/books/`,{
+			const uploadBookResponse = await fetch(`http://localhost:8000/books/`,{
 				method:'POST',
 				credentials: 'include',
 				body: JSON.stringify(data),
@@ -94,7 +94,7 @@ class BookContainer extends React.Component{
 
 	findBooksWithKeyword= async (keyword) => {
     	try{
-    		const url = `${process.env.REACT_APP_API_URL}/books/results?keyword=${keyword}`
+    		const url = `http://localhost:8000/books/results?keyword=${keyword}`
     		// console.log("searching url:");
     		// console.log(url);	
       		const findBooksWithKeywordResponse = await fetch(url, { 
@@ -128,11 +128,10 @@ class BookContainer extends React.Component{
 				{this.state.keyword && !this.state.oneBook ? <SearchBooks displayOneBook={this.displayOneBook} books={this.state.keywordbooks} keyword={this.state.keyword} /> : null}
 
 				<br/><br/><br/>
-				{this.state.oneBook && !this.state.keyword? <SingleBook {...this.props} displayUser={this.props.displayUser} book={this.state.oneBook} username={this.props.username}/>: null}
+				{this.state.oneBook && !this.state.keyword? <SingleBook {...this.props} user={this.props.user} displayUser={this.props.displayUser} book={this.state.oneBook} username={this.props.username}/>: null}
 				
 				{this.props.displayUpload ? <CreateBook displayOneBook={this.displayOneBook} toggleUpload={this.props.toggleUpload} uploadBook={this.uploadBook}/>: null}
 				<br/><br/><br/>
-				{this.props.loggedIn ? <RequestsContainer loggedIn={this.state.loggedIn} user={this.props.user } /> : null }
 			</main>
 		)
 	}

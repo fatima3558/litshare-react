@@ -119,6 +119,7 @@ class App extends Component {
                   displayUser={this.displayUser}
                   loggedIn={this.state.loggedIn}
                   toggleLogin={this.toggleLogin}
+                  user={this.state.loggedInUser}
                   username={this.state.loggedInUser.username}
                   displayUpload={this.state.displayUpload}
                 /> 

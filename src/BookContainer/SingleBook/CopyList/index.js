@@ -44,7 +44,7 @@ class CopyList extends React.Component{
 							<Card.Description>
 								<p> condition: {copy.condition}<br/>edition: {copy.edition}<br/>price: {copy.price}<br/>rental time: {copy.rental_time} days</p>
 							<Card.Content extra>
-								<Button size='mini' onClick={this.props.createRequestForBook.bind(null, copy.id, copy.owner_id.id, this.props.user)}>REQUEST</Button>
+								<Button size='mini' onClick={this.props.createRequestForBook.bind(null, copy.id, copy.owner_id.id)}>REQUEST</Button>
 							</Card.Content>
 							</Card.Description>
 						</Card.Content>

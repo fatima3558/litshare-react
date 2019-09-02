@@ -23,7 +23,7 @@ class SingleBook extends React.Component{
 	}
 
 	getCopy = async () => {
-		const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy`
+		const url = `http://localhost:8000/books/${this.props.book.id}/copy`
 		const getCopiesResponse = await fetch(url,{
 			method: 'GET',
         	credentials: 'include'
@@ -43,7 +43,7 @@ class SingleBook extends React.Component{
   		console.log(data)
 
   		try{
-  			const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy`
+  			const url = `http://localhost:8000/books/${this.props.book.id}/copy`
   			console.log(url);
 			const uploadCopyResponse = await fetch(url,{
 				method:'POST',
@@ -81,7 +81,7 @@ class SingleBook extends React.Component{
 
   	deleteOneCopy = async (copyId) => {
 		console.log(copyId,"<-------should be the copyid!!!");
-		const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy/${copyId}`
+		const url = `http://localhost:8000/books/${this.props.book.id}/copy/${copyId}`
 		const deleteOneCopyResponse = await fetch(url, {
 			method: 'DELETE',
 			credentials: 'include'
@@ -105,7 +105,7 @@ class SingleBook extends React.Component{
 	}
 
 	updateEditCopy= async (data) => {
-		const url = `${process.env.REACT_APP_API_URL}/books/${this.props.book.id}/copy/${this.state.copyToEdit.id}`
+		const url = `http://localhost:8000/books/${this.props.book.id}/copy/${this.state.copyToEdit.id}`
 		console.log(url,"<------url in updateEditCopy");
 		const editCopyResponse = await fetch(url,{
 			method:'PUT',
@@ -132,24 +132,24 @@ class SingleBook extends React.Component{
 		})
 	}
 
-	createRequestForBook = async (copyid, ownerid, borrowerid) => {
-		console.log(this.props.user);
-		console.log("*** Create Request ***", copyid, ownerid, borrowerid);
+	createRequestForBook = async (copyid, ownerid, ) => {
+		// console.log(this.props.user);
+		console.log("*** Create Request ***", copyid, ownerid, this.props.user.id);
 
-		const requestBody = JSON.stringify({copy_id: copyid, owner_id: ownerid, borrower_id: borrowerid.id})
-		console.log("Here is the body of the request we're about to send in createRequestForBook() in SingleBook");
-		console.log(requestBody);
-		const createdResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/`, {
-			method: 'POST',
-			credentials: 'include',
-			body: requestBody,
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
-		console.log(createdResponse);
-		const parsed = await createdResponse.json()
-		console.log(parsed);
+		// const requestBody = JSON.stringify({copy_id: copyid, owner_id: ownerid, borrower_id: borrowerid.id})
+		// console.log("Here is the body of the request we're about to send in createRequestForBook() in SingleBook");
+		// console.log(requestBody);
+		// const createdResponse = await fetch(`http://localhost:8000/requests/`, {
+		// 	method: 'POST',
+		// 	credentials: 'include',
+		// 	body: requestBody,
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	}
+		// })
+		// console.log(createdResponse);
+		// const parsed = await createdResponse.json()
+		// console.log(parsed);
 		
 	}
 

@@ -30,7 +30,7 @@ class RegisterContainer extends Component {
 			newUser.append('bio', this.state.bio)
 			newUser.append('zipcode', this.state.zipcode)
 			// query the database
-			const register = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
+			const register = await fetch(`http://localhost:8000/users/register`, {
 				method: 'POST',
 				credentials: 'include',
 				body: newUser,

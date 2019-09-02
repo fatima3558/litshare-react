@@ -19,7 +19,7 @@ class LoansContainer extends React.Component{
 		findAllLoans = async () => {
 		let parsedResponse
 			try {
-				const findAllLoans = await fetch('http://127.0.0.1:8000/loans/', {
+				const findAllLoans = await fetch('http://localhost:8000/loans/', {
 					method: 'GET',
 
 				});

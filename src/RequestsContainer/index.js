@@ -21,7 +21,7 @@ class RequestsContainer extends React.Component{
 
 	findAllRequests = async () => {
 			try {
-				const findAllRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/${this.props.user.id}`, {
+				const findAllRequests = await fetch(`http://localhost:8000/requests/${this.props.user.id}`, {
 					method: 'GET',
 
 				});
@@ -39,7 +39,7 @@ class RequestsContainer extends React.Component{
 	findSentRequests = async () => {
 			try {
 				
-				const findSentRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/sent/${this.props.user.id}`, {
+				const findSentRequests = await fetch(`http://localhost:8000/requests/sent/${this.props.user.id}`, {
 					method: 'GET'
 				});
 				const parsedResponse = await findSentRequests.json();
@@ -55,7 +55,7 @@ class RequestsContainer extends React.Component{
 
 	findReceivedRequests = async () => {
 			try {
-				const findReceivedRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/received/${this.props.user.id}`, {
+				const findReceivedRequests = await fetch(`http://localhost:8000/requests/received/${this.props.user.id}`, {
 					method: 'GET'
 				});
 				const parsedResponse = await findReceivedRequests.json();
@@ -71,7 +71,7 @@ class RequestsContainer extends React.Component{
 	updateRequestApprove = async (ask_id) => {
 		try{
 			const requestBody = JSON.stringify({"approval_granted": true})
-			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/approval/${ask_id}`, {
+			const updateResponse = await fetch(`http://localhost:8000/requests/approval/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
 				body: requestBody,
@@ -83,7 +83,7 @@ class RequestsContainer extends React.Component{
 			console.log(parsed);
 
 			const loanRequestBody = JSON.stringify({ask_id: ask_id})
-			const createdLoan = await fetch(`${process.env.REACT_APP_API_URL}/loan/`, {
+			const createdLoan = await fetch(`http://localhost:8000/loan/`, {
 				method: 'POST',
 				credentials: 'include',
 				body: loanRequestBody,
@@ -107,7 +107,7 @@ class RequestsContainer extends React.Component{
 	updateRequestDeny = async (ask_id) => {
 		try{
 			const requestBody = JSON.stringify({"approval_granted": false})
-			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/approval/${ask_id}`, {
+			const updateResponse = await fetch(`http://localhost:8000/requests/approval/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
 				body: requestBody,
