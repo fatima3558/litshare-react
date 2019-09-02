@@ -150,7 +150,6 @@ class SingleBook extends React.Component{
 		console.log(createdResponse,'<---------create request response ');
 		const parsed = await createdResponse.json()
 		console.log(parsed,"<====== parsed response requesr");
-		
 	}
 
 

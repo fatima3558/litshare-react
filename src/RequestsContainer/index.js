@@ -70,30 +70,41 @@ class RequestsContainer extends React.Component{
 
 	updateRequestApprove = async (ask_id) => {
 		try{
-			const requestBody = JSON.stringify({"approval_granted": true})
-			const updateResponse = await fetch(`http://localhost:8000/requests/approval/${ask_id}`, {
+			const thisRequest = await fetch(`http://localhost:8000/requests/${ask_id}`)
+			const parsedThisRequest = await thisRequest.json()
+			console.log(parsedThisRequest,'<------this request from approval');
+			const thisData = parsedThisRequest.data[0]
+			thisData.approval_granted = true
+			thisData.borrower_id = thisData.borrower_id.id
+			thisData.copy_id = thisData.copy_id.id
+			thisData.owner_id = thisData.owner_id.id
+			console.log(thisData,"<------thisdata from approval");
+			// const requestBody = JSON.stringify({"approval_granted": true, })
+			// const oneResposne = await fetch(`http://localhost:8000/requests/`)
+			const updateResponse = await fetch(`http://localhost:8000/requests/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
-				body: requestBody,
+				body: JSON.stringify(thisData),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
-			const parsed = await updateResponse.json()
-			console.log(parsed);
 
-			const loanRequestBody = JSON.stringify({ask_id: ask_id})
-			const createdLoan = await fetch(`http://localhost:8000/loan/`, {
-				method: 'POST',
-				credentials: 'include',
-				body: loanRequestBody,
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})
-			console.log(createdLoan);
-			const parsedLoan = await createdLoan.json()
-			console.log(parsedLoan);
+			const parsedResponse = await updateResponse.json()
+			console.log(parsedResponse,"<-------updated resposne for approval");
+
+			// const loanRequestBody = JSON.stringify({ask_id: ask_id})
+			// const createdLoan = await fetch(`http://localhost:8000/loan/`, {
+			// 	method: 'POST',
+			// 	credentials: 'include',
+			// 	body: loanRequestBody,
+			// 	headers: {
+			// 		'Content-Type': 'application/json'
+			// 	}
+			// })
+			// console.log(createdLoan);
+			// const parsedLoan = await createdLoan.json()
+			// console.log(parsedLoan);
 
 			
 
@@ -106,17 +117,39 @@ class RequestsContainer extends React.Component{
 
 	updateRequestDeny = async (ask_id) => {
 		try{
-			const requestBody = JSON.stringify({"approval_granted": false})
-			const updateResponse = await fetch(`http://localhost:8000/requests/approval/${ask_id}`, {
+			const thisRequest = await fetch(`http://localhost:8000/requests/${ask_id}`)
+			const parsedThisRequest = await thisRequest.json()
+			console.log(parsedThisRequest,'<------this request from approval');
+			const thisData = parsedThisRequest.data[0]
+			thisData.approval_granted = false
+			thisData.borrower_id = thisData.borrower_id.id
+			thisData.copy_id = thisData.copy_id.id
+			thisData.owner_id = thisData.owner_id.id
+			console.log(thisData,"<------thisdata from approval");
+			// const requestBody = JSON.stringify({"approval_granted": true, })
+			// const oneResposne = await fetch(`http://localhost:8000/requests/`)
+			const updateResponse = await fetch(`http://localhost:8000/requests/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
-				body: requestBody,
+				body: JSON.stringify(thisData),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
-			const parsed = await updateResponse.json()
-			console.log(parsed);
+
+			const parsedResponse = await updateResponse.json()
+			console.log(parsedResponse,"<-------updated resposne for approval");
+			// const requestBody = JSON.stringify({"approval_granted": false})
+			// const updateResponse = await fetch(`http://localhost:8000/requests/approval/${ask_id}`, {
+			// 	method: 'PUT',
+			// 	credentials: 'include',
+			// 	body: requestBody,
+			// 	headers: {
+			// 		'Content-Type': 'application/json'
+			// 	}
+			// })
+			// const parsed = await updateResponse.json()
+			// console.log(parsed);
 
 
 		} catch(err) {

@@ -72,7 +72,7 @@ class UserInfoContainer extends React.Component {
 						<h4><span>Or</span></h4>
 						<br/>
 						<Button onClick={this.deleteUser}>Delete Your Account</Button>
-						<RequestsContainer loggedIn={this.props.loggedIn} user={this.props.user } />
+						<RequestsContainer loggedIn={this.props.loggedIn} user={this.props.user} />
 
 					</div> 
 					: null
