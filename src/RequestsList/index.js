@@ -50,7 +50,7 @@ class RequestsList extends React.Component {
       return (
         <li key={ask.id}>
           <span>{ask.copy_id.book_id.title} by {ask.copy_id.book_id.author}</span><br/>
-          <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span> 
+          <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span><br/> 
           <button onClick={this.handleClick.bind(null, ask.id)}>
             Approve
           </button>
@@ -66,7 +66,7 @@ class RequestsList extends React.Component {
         <li key={ask.id}>
           <span>{ask.copy_id.book_id.title} by {ask.copy_id.book_id.author}</span><br/>
           <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span><br/>
-          <span>You have approved this request!</span>
+          <span>You have approved this request!</span><br/>
           <LoanContainer loans={this.state.loans} ask_id={ask.id}/>
         </li>
 

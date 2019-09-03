@@ -70,7 +70,7 @@ class LoanContainer extends React.Component {
 			<div>
 				{this.state.foundLoan ? 
 					<div>
-						This copy is due {this.state.foundLoan[0].date_due}
+						This copy is due {this.state.foundLoan[0].date_due}<br/>
 						{!this.state.returned ? 
 							<button onClick={this.handleClick}>
 								Mark Returned
