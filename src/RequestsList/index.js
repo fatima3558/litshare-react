@@ -31,8 +31,16 @@ class RequestsList extends React.Component {
           return (
             <li key={ask.id}>
               <span>{ask.copy_id.book_id.title} by {ask.copy_id.book_id.author}</span><br/>
-              <span>Owned by {ask.copy_id.owner_id.username}</span><br/>
-              {ask.approval_granted ? <span>your request has been approved</span> : <span>your request has been denied</span>}
+              <span>
+                Owned by {ask.copy_id.owner_id.username}
+              </span><br/>
+              {ask.approval_granted ? 
+                <div>
+                  <span>YOUR REQUEST HAS BEEN APPROVED: </span>
+                  <LoanContainer user={this.props.user} loans={this.state.loans} ask_id={ask.id}/> 
+                </div> : 
+                <span>YOUR REQUEST HAS BEEN DENIED.</span>
+              }
             </li>
             )
         } else {
@@ -67,7 +75,7 @@ class RequestsList extends React.Component {
           <span>{ask.copy_id.book_id.title} by {ask.copy_id.book_id.author}</span><br/>
           <span>Requested by: {ask.borrower_id.username} on {ask.ask_date}</span><br/>
           <span>You have approved this request!</span><br/>
-          <LoanContainer loans={this.state.loans} ask_id={ask.id}/>
+          <LoanContainer user={this.props.user} loans={this.state.loans} ask_id={ask.id}/>
         </li>
 
         )

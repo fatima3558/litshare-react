@@ -216,6 +216,7 @@ class RequestsContainer extends React.Component{
 					updateRequestApprove={this.updateRequestApprove} 
 					updateRequestDeny={this.updateRequestDeny}
 					createdLoan={this.state.createdLoan}
+					user={this.props.user}
 				/>
 				
 				

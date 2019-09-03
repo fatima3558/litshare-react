@@ -25,7 +25,7 @@ class LoanContainer extends React.Component {
 			console.log(existingLoan, "this is existing Loan in Loan Container");
 			if(existingLoan) {
 				this.setState({
-					foundLoan: existingLoan
+					foundLoan: existingLoan[0]
 				})
 			} 
 
@@ -37,7 +37,7 @@ class LoanContainer extends React.Component {
 
 	handleClick = async () => {
 		try {
-			const returnedLoan = this.state.foundLoan[0]
+			const returnedLoan = this.state.foundLoan
 			returnedLoan.returned = true
 			returnedLoan.ask_id = returnedLoan.ask_id.id
 			console.log(returnedLoan, "returned loan");
@@ -70,8 +70,8 @@ class LoanContainer extends React.Component {
 			<div>
 				{this.state.foundLoan ? 
 					<div>
-						This copy is due {this.state.foundLoan[0].date_due}<br/>
-						{!this.state.returned ? 
+						This copy is due {this.state.foundLoan.date_due}<br/>
+						{!this.state.returned && (this.state.foundLoan.ask_id.owner_id.id === this.props.user.id) ? 
 							<button onClick={this.handleClick}>
 								Mark Returned
 							</button> :
