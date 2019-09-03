@@ -32,8 +32,7 @@ class BookContainer extends React.Component{
 	findAllBooks= async () =>{
 		//this will find all the books for the archive link in the footer
 		try{
-			const findAllBooksResponse = await fetch(`http://${process.env.REA
-				CT_APP_API_URL}/books/`,{
+			const findAllBooksResponse = await fetch(`http://${process.env.REACT_APP_API_URL}/books/`,{
 				method: 'GET',
 				credentials: 'include'
 			})
