@@ -15,7 +15,7 @@ class LoanContainer extends React.Component {
 
 	checkForLoan = async () => {
 		try {
-			const findAllLoans = await fetch(`http://${process.env.REACT_APP_API_URL}/loan/`, {
+			const findAllLoans = await fetch(`${process.env.REACT_APP_API_URL}/loan/`, {
 				method: 'GET',
 				credentials: 'include',
 			});
@@ -41,7 +41,7 @@ class LoanContainer extends React.Component {
 			returnedLoan.returned = true
 			returnedLoan.ask_id = returnedLoan.ask_id.id
 			console.log(returnedLoan, "returned loan");
-			const updatedLoan = await fetch(`http://${process.env.REACT_APP_API_URL}/loan/${returnedLoan.id}`, {
+			const updatedLoan = await fetch(`${process.env.REACT_APP_API_URL}/loan/${returnedLoan.id}`, {
 				method: 'PUT',
 				credentials: 'include',
 				body: JSON.stringify(returnedLoan),

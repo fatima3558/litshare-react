@@ -22,7 +22,7 @@ class RequestsContainer extends React.Component{
 
 	findAllRequests = async () => {
 			try {
-				const findAllRequests = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/${this.props.user.id}`, {
+				const findAllRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/${this.props.user.id}`, {
 					method: 'GET',
 
 				});
@@ -40,7 +40,7 @@ class RequestsContainer extends React.Component{
 	findSentRequests = async () => {
 			try {
 				
-				const findSentRequests = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/sent/${this.props.user.id}`, {
+				const findSentRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/sent/${this.props.user.id}`, {
 					method: 'GET'
 				});
 				const parsedResponse = await findSentRequests.json();
@@ -56,7 +56,7 @@ class RequestsContainer extends React.Component{
 
 	findReceivedRequests = async () => {
 			try {
-				const findReceivedRequests = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/received/${this.props.user.id}`, {
+				const findReceivedRequests = await fetch(`${process.env.REACT_APP_API_URL}/requests/received/${this.props.user.id}`, {
 					method: 'GET'
 				});
 				const parsedResponse = await findReceivedRequests.json();
@@ -71,7 +71,7 @@ class RequestsContainer extends React.Component{
 
 	updateRequestApprove = async (ask_id) => {
 		try{
-			const thisRequest = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/${ask_id}`)
+			const thisRequest = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`)
 			const parsedThisRequest = await thisRequest.json()
 			// console.log(parsedThisRequest,'<------this request from approval');
 			const thisData = parsedThisRequest.data[0]
@@ -82,8 +82,8 @@ class RequestsContainer extends React.Component{
 			thisData.owner_id = thisData.owner_id.id
 			// console.log(thisData,"<------thisdata from approval");
 			// const requestBody = JSON.stringify({"approval_granted": true, })
-			// const oneResposne = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/`)
-			const updateResponse = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/${ask_id}`, {
+			// const oneResposne = await fetch(`${process.env.REACT_APP_API_URL}/requests/`)
+			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
 				body: JSON.stringify(thisData),
@@ -101,7 +101,7 @@ class RequestsContainer extends React.Component{
 			console.log(today, '<-----today');
 			// console.log(dueDate.toDateString(), "<====== duedate");
 			const loanRequestBody = {ask_id: ask_id, date_due: today, date_borrowed: dateborrowed}
-			const createdLoan = await fetch(`http://${process.env.REACT_APP_API_URL}/loan/`, {
+			const createdLoan = await fetch(`${process.env.REACT_APP_API_URL}/loan/`, {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(loanRequestBody),
@@ -126,7 +126,7 @@ class RequestsContainer extends React.Component{
 
 	updateRequestDeny = async (ask_id) => {
 		try{
-			const thisRequest = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/${ask_id}`)
+			const thisRequest = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`)
 			const parsedThisRequest = await thisRequest.json()
 			// console.log(parsedThisRequest,'<------this request from approval');
 			const thisData = parsedThisRequest.data[0]
@@ -136,8 +136,8 @@ class RequestsContainer extends React.Component{
 			thisData.owner_id = thisData.owner_id.id
 			// console.log(thisData,"<------thisdata from approval");
 			// const requestBody = JSON.stringify({"approval_granted": true, })
-			// const oneResposne = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/`)
-			const updateResponse = await fetch(`http://${process.env.REACT_APP_API_URL}/requests/${ask_id}`, {
+			// const oneResposne = await fetch(`${process.env.REACT_APP_API_URL}/requests/`)
+			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
 				body: JSON.stringify(thisData),
