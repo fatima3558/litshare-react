@@ -4,7 +4,8 @@ class LoanContainer extends React.Component {
 	constructor() {
 		super() 
 		this.state = {
-			foundLoan: false
+			foundLoan: false,
+			returned: false
 		}
 	}
 
@@ -34,6 +35,34 @@ class LoanContainer extends React.Component {
 		}
 	}
 
+	handleClick = async () => {
+		try {
+			const returnedLoan = this.state.foundLoan[0]
+			returnedLoan.returned = true
+			returnedLoan.ask_id = returnedLoan.ask_id.id
+			console.log(returnedLoan, "returned loan");
+			const updatedLoan = await fetch(`http://localhost:8000/loan/${returnedLoan.id}`, {
+				method: 'PUT',
+				credentials: 'include',
+				body: JSON.stringify(returnedLoan),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+
+			const parsedUpdatedLoan = await updatedLoan.json()
+			console.log(parsedUpdatedLoan, "parsed updated loan");
+
+			this.setState({
+				returned: true
+			})
+
+		} catch(err) {
+			console.log(err);
+			return err
+		}
+	}
+
 	render() {
 		console.log(this.props, "props in LoanContainer");
 		console.log(this.state.foundLoan, "found loan in state of LoanContainer");
@@ -42,6 +71,12 @@ class LoanContainer extends React.Component {
 				{this.state.foundLoan ? 
 					<div>
 						This copy is due {this.state.foundLoan[0].date_due}
+						{!this.state.returned ? 
+							<button onClick={this.handleClick}>
+								Mark Returned
+							</button> :
+							null
+						}
 					</div> :
 					null
 				}
