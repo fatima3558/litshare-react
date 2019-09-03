@@ -10,7 +10,8 @@ class RequestsContainer extends React.Component{
 		super()
 		this.state={
 			requests: [],
-			requestType: ''
+			requestType: '',
+			createdLoan: null
 		}
 	}
 
@@ -112,7 +113,9 @@ class RequestsContainer extends React.Component{
 			const parsedLoan = await createdLoan.json()
 			console.log(parsedLoan,'<--------parsedLoan response');
 
-			
+			this.setState({
+				createdLoan: parsedLoan
+			})
 
 		} catch(err) {
 			console.log(err);
@@ -207,7 +210,13 @@ class RequestsContainer extends React.Component{
 					</fieldset>
 					
 				</form>
-				<RequestsList requests={this.state.requests} type={this.state.requestType} updateRequestApprove={this.updateRequestApprove} updateRequestDeny={this.updateRequestDeny}/>
+				<RequestsList 
+					requests={this.state.requests} 
+					type={this.state.requestType} 
+					updateRequestApprove={this.updateRequestApprove} 
+					updateRequestDeny={this.updateRequestDeny}
+					createdLoan={this.state.createdLoan}
+				/>
 				
 				
 				
