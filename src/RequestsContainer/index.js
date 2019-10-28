@@ -10,7 +10,8 @@ class RequestsContainer extends React.Component{
 		super()
 		this.state={
 			requests: [],
-			requestType: ''
+			requestType: '',
+			createdLoan: null
 		}
 	}
 
@@ -70,32 +71,51 @@ class RequestsContainer extends React.Component{
 
 	updateRequestApprove = async (ask_id) => {
 		try{
-			const requestBody = JSON.stringify({"approval_granted": true})
-			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/approval/${ask_id}`, {
+			const thisRequest = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`)
+			const parsedThisRequest = await thisRequest.json()
+			// console.log(parsedThisRequest,'<------this request from approval');
+			const thisData = parsedThisRequest.data[0]
+			const due = thisData.copy_id.rental_time
+			thisData.approval_granted = true
+			thisData.borrower_id = thisData.borrower_id.id
+			thisData.copy_id = thisData.copy_id.id
+			thisData.owner_id = thisData.owner_id.id
+			// console.log(thisData,"<------thisdata from approval");
+			// const requestBody = JSON.stringify({"approval_granted": true, })
+			// const oneResposne = await fetch(`${process.env.REACT_APP_API_URL}/requests/`)
+			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
-				body: requestBody,
+				body: JSON.stringify(thisData),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
-			const parsed = await updateResponse.json()
-			console.log(parsed);
 
-			const loanRequestBody = JSON.stringify({ask_id: ask_id})
+			const parsedResponse = await updateResponse.json()
+			console.log(parsedResponse,"<-------updated resposne for approval");
+			const today = new Date()
+			const dateborrowed = new Date()
+			console.log(today, '<------today att first');
+			const dueDate = today.setDate(today.getDate()+due)
+			console.log(today, '<-----today');
+			// console.log(dueDate.toDateString(), "<====== duedate");
+			const loanRequestBody = {ask_id: ask_id, date_due: today, date_borrowed: dateborrowed}
 			const createdLoan = await fetch(`${process.env.REACT_APP_API_URL}/loan/`, {
 				method: 'POST',
 				credentials: 'include',
-				body: loanRequestBody,
+				body: JSON.stringify(loanRequestBody),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
-			console.log(createdLoan);
+			// console.log(createdLoan);
 			const parsedLoan = await createdLoan.json()
-			console.log(parsedLoan);
+			console.log(parsedLoan,'<--------parsedLoan response');
 
-			
+			this.setState({
+				createdLoan: parsedLoan
+			})
 
 		} catch(err) {
 			console.log(err);
@@ -106,18 +126,28 @@ class RequestsContainer extends React.Component{
 
 	updateRequestDeny = async (ask_id) => {
 		try{
-			const requestBody = JSON.stringify({"approval_granted": false})
-			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/approval/${ask_id}`, {
+			const thisRequest = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`)
+			const parsedThisRequest = await thisRequest.json()
+			// console.log(parsedThisRequest,'<------this request from approval');
+			const thisData = parsedThisRequest.data[0]
+			thisData.approval_granted = false
+			thisData.borrower_id = thisData.borrower_id.id
+			thisData.copy_id = thisData.copy_id.id
+			thisData.owner_id = thisData.owner_id.id
+			// console.log(thisData,"<------thisdata from approval");
+			// const requestBody = JSON.stringify({"approval_granted": true, })
+			// const oneResposne = await fetch(`${process.env.REACT_APP_API_URL}/requests/`)
+			const updateResponse = await fetch(`${process.env.REACT_APP_API_URL}/requests/${ask_id}`, {
 				method: 'PUT',
 				credentials: 'include',
-				body: requestBody,
+				body: JSON.stringify(thisData),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
-			const parsed = await updateResponse.json()
-			console.log(parsed);
 
+			const parsedResponse = await updateResponse.json()
+			// console.log(parsedResponse,"<-------updated resposne for approval");
 
 		} catch(err) {
 			console.log(err);
@@ -180,7 +210,14 @@ class RequestsContainer extends React.Component{
 					</fieldset>
 					
 				</form>
-				<RequestsList requests={this.state.requests} type={this.state.requestType} updateRequestApprove={this.updateRequestApprove} updateRequestDeny={this.updateRequestDeny}/>
+				<RequestsList 
+					requests={this.state.requests} 
+					type={this.state.requestType} 
+					updateRequestApprove={this.updateRequestApprove} 
+					updateRequestDeny={this.updateRequestDeny}
+					createdLoan={this.state.createdLoan}
+					user={this.props.user}
+				/>
 				
 				
 				

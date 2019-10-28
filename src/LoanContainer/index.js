@@ -1,50 +1,93 @@
 import React from 'react'
-// import { Route, Switch } from 'react-router-dom'
-// import Header from '../Header'
-// import SearchBooks from '../SearchBooks'
 
-
-class LoansContainer extends React.Component{
-	constructor(){
-		super()
-		this.state={
-			loans: [],
+class LoanContainer extends React.Component {
+	constructor() {
+		super() 
+		this.state = {
+			foundLoan: false,
+			returned: false
 		}
 	}
 
-	componentDidMount(){
-		this.findAllRequests()
+	componentDidMount() {
+		this.checkForLoan()
 	}
 
-		findAllLoans = async () => {
-		let parsedResponse
-			try {
-				const findAllLoans = await fetch('http://127.0.0.1:8000/loans/', {
-					method: 'GET',
-
-				});
-				parsedResponse = await findAllLoans.json();
-				// console.log("*** Parsed Response (findAllRequests) ***", parsedResponse);
+	checkForLoan = async () => {
+		try {
+			const findAllLoans = await fetch(`${process.env.REACT_APP_API_URL}/loan/`, {
+				method: 'GET',
+				credentials: 'include',
+			});
+			const parsedResponse = await findAllLoans.json()
+			console.log(parsedResponse, "parsedResponse");
+			const existingLoan = parsedResponse.data.filter(loan => loan.ask_id.id === this.props.ask_id)
+			console.log(existingLoan, "this is existing Loan in Loan Container");
+			if(existingLoan) {
 				this.setState({
-					requests:[... parsedResponse.data]
+					foundLoan: existingLoan[0]
 				})
-			} catch(err) {
-				console.log(err);
-				return err
-			}
-			console.log("*** Parsed Loan (findAllLoans) ***", parsedResponse);
+			} 
+
+		} catch(err) {
+			console.log(err);
+			return err
 		}
+	}
 
+	handleClick = async () => {
+		try {
+			const returnedLoan = this.state.foundLoan
+			returnedLoan.returned = true
+			returnedLoan.ask_id = returnedLoan.ask_id.id
+			console.log(returnedLoan, "returned loan");
+			const updatedLoan = await fetch(`${process.env.REACT_APP_API_URL}/loan/${returnedLoan.id}`, {
+				method: 'PUT',
+				credentials: 'include',
+				body: JSON.stringify(returnedLoan),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
 
-		render(){
+			const parsedUpdatedLoan = await updatedLoan.json()
+			console.log(parsedUpdatedLoan, "parsed updated loan");
 
+			this.setState({
+				returned: true
+			})
 
-		console.log("**** The state of the Loan Component ****", this.state);
+		} catch(err) {
+			console.log(err);
+			return err
+		}
+	}
+
+	render() {
+		console.log(this.props, "props in LoanContainer");
+		console.log(this.state.foundLoan, "found loan in state of LoanContainer");
 		return(
-			<div></div>
-		}
-
-
+			<div>
+				{this.state.foundLoan ? 
+					<div>
+						This copy is due {this.state.foundLoan.date_due}<br/>
+						{!this.state.returned && (this.state.foundLoan.ask_id.owner_id.id === this.props.user.id) ? 
+							<button onClick={this.handleClick}>
+								Mark Returned
+							</button> :
+							null
+						}
+					</div> :
+					null
+				}
+			</div>
+		)
+	}
 }
 
-export default RequestsContainer
+export default LoanContainer
+
+
+
+
+
